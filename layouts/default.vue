@@ -2,7 +2,7 @@
   <div class="flex flex-col min-h-screen">
     <TheHeader class="bg-white" />
 
-    <main class="flex-auto">
+    <main class="container mx-auto flex-auto">
       <Nuxt />
     </main>
 
@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: "LayoutDefault",
+  name: 'LayoutDefault',
 };
 </script>

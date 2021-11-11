@@ -11,6 +11,7 @@ const typeDefs = gql`
     name: String
     image: String
     slug: String
+    icon: String
   }
 `;
 

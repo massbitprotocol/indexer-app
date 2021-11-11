@@ -1,5 +1,9 @@
 <template>
-  <div>My indexer</div>
+  <div>
+    <MyIndexerProjects v-if="$auth.loggedIn" />
+
+    <MyIndexerHome v-else />
+  </div>
 </template>
 
 <script>

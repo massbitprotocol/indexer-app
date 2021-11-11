@@ -2,7 +2,13 @@
 const resolvers = {
   Query: {
     projects: () => [
-      { id: '1', name: 'Acala', image: 'https://picsum.photos/234/234?random=1', slug: 'acala' },
+      {
+        id: '1',
+        name: 'Acala',
+        image: 'https://picsum.photos/234/234?random=1',
+        slug: 'acala',
+        icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/6756.png',
+      },
       { id: '2', name: 'approval', image: 'https://picsum.photos/234/234?random=2', slug: 'approval' },
       { id: '3', name: 'Art Blocks', image: 'https://picsum.photos/234/234?random=3', slug: 'art-blocks' },
       { id: '4', name: 'Auctus Options', image: 'https://picsum.photos/234/234?random=4', slug: 'auctus-options' },

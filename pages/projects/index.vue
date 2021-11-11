@@ -20,11 +20,17 @@
 import getProjects from '~/graphql/queries/projects.graphql';
 export default {
   name: 'Projects',
+
   layout: 'home',
+
   apollo: {
     projects: {
       query: getProjects,
     },
+  },
+
+  created() {
+    console.log('this.projects :>> ', this.projects);
   },
 };
 </script>

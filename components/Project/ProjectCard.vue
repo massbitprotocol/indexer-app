@@ -18,7 +18,7 @@
       <div class="flex-none">
         <img
           loading="lazy"
-          :src="`https://i.pravatar.cc/40?u=${project.id}`"
+          :src="project.icon || `https://i.pravatar.cc/40?u=${project.id}`"
           width="40"
           height="40"
           alt="Profile Picture"
@@ -29,8 +29,12 @@
         <div class="text-body-1 text-neutral-darkest leading-tight font-bold sm:text-base">
           {{ project.name }}
         </div>
-        <div class="text-caption text-neutral-grey">OnFinality-io</div>
+        <div class="text-caption text-neutral-grey">{{ project.slug }}</div>
       </div>
+    </div>
+
+    <div>
+      <slot name="action" />
     </div>
   </NuxtLink>
 </template>

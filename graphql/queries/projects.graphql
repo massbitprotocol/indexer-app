@@ -4,5 +4,6 @@ query getProjects {
     image
     name
     slug
+    icon
   }
 }
