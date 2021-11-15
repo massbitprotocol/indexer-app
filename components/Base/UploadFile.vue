@@ -19,8 +19,8 @@
     @dragover.prevent
     @click="showUploadFolder"
   >
-    <template v-if="preview">
-      <img class="w-full h-full object-cover rounded-lg" :src="preview" alt="" />
+    <template v-if="_preview">
+      <img class="w-full h-full object-cover rounded-lg" :src="_preview" alt="" />
 
       <div
         class="
@@ -84,11 +84,28 @@
 export default {
   name: 'BaseUpload',
 
+  props: {
+    preview: {
+      type: String,
+    },
+  },
+
   data() {
     return {
       file: null,
-      preview: null,
     };
+  },
+
+  computed: {
+    _preview: {
+      get() {
+        return this.preview;
+      },
+
+      set(value) {
+        this.$emit('update:preview', value);
+      },
+    },
   },
 
   methods: {
@@ -102,7 +119,7 @@ export default {
 
     removeCurrentImage() {
       this.file = null;
-      this.preview = null;
+      this._preview = null;
     },
 
     showUploadFolder() {
@@ -125,7 +142,7 @@ export default {
       reader.addEventListener(
         'load',
         () => {
-          this.preview = reader.result;
+          this._preview = reader.result;
         },
         false,
       );

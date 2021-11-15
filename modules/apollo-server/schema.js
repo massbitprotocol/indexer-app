@@ -9,7 +9,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createIndexer(name: String!, description: String, repo_url: String!, website_url: String!): Project
+    createIndexer(name: String!, description: String, repo_url: String!, website_url: String!, image: String): Project
     deployProject(id: String!): Project
   }
 

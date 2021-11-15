@@ -9,5 +9,6 @@ query getProjects($deployed: Boolean, $network: String) {
     repo_url
     website_url
     deployed
+    network
   }
 }

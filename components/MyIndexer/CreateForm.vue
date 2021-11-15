@@ -4,7 +4,7 @@
       <div class="text-body-1 text-neutral-darkest font-semibold">Indexer Logo</div>
       <div class="mt-1 text-body-2 text-neutral-grey font-semibold">File types supported: JPG, PNG. Max size: 4 MB</div>
 
-      <BaseUploadFile />
+      <BaseUploadFile :preview.sync="preview" />
 
       <ValidationProvider v-slot="{ errors }" rules="required" name="indexer name" tag="div" class="w-full mt-5">
         <div>
@@ -139,18 +139,26 @@ export default {
   data() {
     return {
       loading: false,
+
       form: {
         name: '',
         description: '',
         repo_url: '',
         website_url: '',
+        image: '',
       },
+
+      preview: null,
     };
   },
 
   methods: {
     async createIndexer() {
       this.loading = true;
+
+      if (this.preview) {
+        this.form.image = this.preview;
+      }
 
       const project = await this.$apollo
         .mutate({

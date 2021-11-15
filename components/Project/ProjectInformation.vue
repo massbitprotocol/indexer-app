@@ -4,7 +4,7 @@
       <div class="flex flex-col sm:items-center space-y-7.5 sm:flex-row sm:space-y-0 sm:space-x-7.5">
         <div class="flex-none mx-auto">
           <img
-            src="https://picsum.photos/240/240?random=12"
+            :src="project.image"
             width="240"
             height="240"
             :alt="project.name"
@@ -28,7 +28,7 @@
             <div v-if="project.deployed" class="bg-accent-green text-white uppercase px-3 py-2 rounded font-medium">
               Deployed
             </div>
-            <div v-else class="bg-accent-red text-white uppercase px-3 py-2 rounded font-medium">Undeployed</div>
+            <div v-else class="bg-accent-red text-white uppercase px-3 py-2 rounded font-medium">Draft</div>
           </div>
           <div class="mt-7.5 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             <div>

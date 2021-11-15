@@ -9,5 +9,6 @@ mutation DeployProjectMutation($id: String!) {
     repo_url
     website_url
     deployed
+    network
   }
 }

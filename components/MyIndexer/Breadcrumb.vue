@@ -14,7 +14,7 @@
           <meta property="position" content="1" />
         </li>
         <li>/</li>
-        <li property="itemListElement" typeof="ListItem" class="text-neutral-darker">
+        <li property="itemListElement" typeof="ListItem" class="text-neutral-darkest font-semibold">
           <span property="name">{{ slug }}</span>
           <meta property="position" content="2" />
         </li>

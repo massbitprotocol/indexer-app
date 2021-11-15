@@ -69,7 +69,7 @@
           </div>
         </template>
 
-        <template #undeployed>
+        <template #draft>
           <ProjectFilter :projects.sync="projects" :filters.sync="filters" />
 
           <ProjectList class="mt-10">
@@ -91,7 +91,7 @@
                       rounded
                     "
                   >
-                    Undeployed
+                    Draft
                   </div>
 
                   <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
@@ -119,8 +119,8 @@ const tabHeaders = [
     key: 'deployed',
   },
   {
-    name: 'Undeployed',
-    key: 'undeployed',
+    name: 'Draft',
+    key: 'draft',
   },
 ];
 export default {

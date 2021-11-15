@@ -8,12 +8,12 @@
       >
         <li property="itemListElement" typeof="ListItem">
           <NuxtLink :to="{ name: 'index' }" class="hover:underline" property="item" typeof="WebPage">
-            <span property="name">MassBit Explore</span>
+            <span property="name">Smart Contract Indexer</span>
           </NuxtLink>
           <meta property="position" content="1" />
         </li>
         <li>/</li>
-        <li property="itemListElement" typeof="ListItem" class="text-neutral-darker">
+        <li property="itemListElement" typeof="ListItem" class="text-neutral-darkest font-semibold">
           <span property="name">{{ slug }}</span>
           <meta property="position" content="2" />
         </li>
