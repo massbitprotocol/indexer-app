@@ -1,3 +1,5 @@
+import webpack from 'webpack';
+
 const description = `Find and consume data faster from the leading Polkadot/Substrate protocols using our free MassBit explorer. The world’s decentralised data is now available to query using GraphQL.`;
 const color = `#2C3ACF`;
 
@@ -42,6 +44,8 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://github.com/nuxt-community/svg-module
+    '@nuxtjs/svg',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -115,5 +119,11 @@ export default {
       plugins: [['@babel/plugin-proposal-private-property-in-object', { loose: true }]],
     },
     transpile: ['vee-validate'],
+    plugins: [
+      new webpack.ProvidePlugin({
+        // global modules
+        _: 'lodash',
+      }),
+    ],
   },
 };

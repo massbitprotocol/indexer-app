@@ -1,0 +1,13 @@
+mutation CreateIndexerMutation($name: String!, $description: String, $repo_url: String!, $website_url: String!) {
+  createIndexer(name: $name, description: $description, repo_url: $repo_url, website_url: $website_url) {
+    id
+    image
+    name
+    slug
+    icon
+    description
+    repo_url
+    website_url
+    deployed
+  }
+}

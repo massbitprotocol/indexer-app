@@ -1,0 +1,27 @@
+query getProjectByID($id: String) {
+  project(id: $id) {
+    id
+    image
+    name
+    slug
+    icon
+    description
+    repo_url
+    website_url
+    deployed
+  }
+}
+
+query filterProjectByName($name: String) {
+  filterProjectByName(name: $name) {
+    id
+    image
+    name
+    slug
+    icon
+    description
+    repo_url
+    website_url
+    deployed
+  }
+}

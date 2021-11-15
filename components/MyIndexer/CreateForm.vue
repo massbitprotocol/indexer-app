@@ -2,9 +2,7 @@
   <ValidationObserver v-slot="{ handleSubmit, invalid }" tag="div">
     <form class="mx-auto w-full mt-2.5" @submit.prevent="handleSubmit(createIndexer)">
       <div class="text-body-1 text-neutral-darkest font-semibold">Indexer Logo</div>
-      <div class="mt-1 text-body-2 text-neutral-grey font-semibold">
-        File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 40 MB
-      </div>
+      <div class="mt-1 text-body-2 text-neutral-grey font-semibold">File types supported: JPG, PNG. Max size: 4 MB</div>
 
       <BaseUploadFile />
 
@@ -36,7 +34,7 @@
         </div>
       </ValidationProvider>
 
-      <ValidationProvider v-slot="{ errors }" rules="required" name="description" tag="div" class="w-full mt-5">
+      <ValidationProvider v-slot="{ errors }" name="description" tag="div" class="w-full mt-5">
         <div>
           <label class="block text-body-1 text-neutral-darkset font-semibold tracking-wide mb-2" for="grid-description">
             Description
@@ -88,7 +86,7 @@
               leading-tight
             "
             id="grid-repo-url"
-            v-model.trim="form.repoUrl"
+            v-model.trim="form.repo_url"
             type="text"
             placeholder="Repository URL"
           />
@@ -116,7 +114,7 @@
               leading-tight
             "
             id="grid-repo-url"
-            v-model.trim="form.webUrl"
+            v-model.trim="form.website_url"
             type="text"
             placeholder="Website URL"
           />
@@ -124,14 +122,17 @@
         </div>
       </ValidationProvider>
 
-      <BaseSecondaryButton class="h-[52px] mt-5" type="submit" :disabled="invalid" :loading="loading">
+      <BaseSecondaryButton v-if="invalid" class="h-[52px] mt-5" type="submit" :disabled="true" :loading="loading">
         Create Indexer
       </BaseSecondaryButton>
+      <BaseButton v-else class="h-[52px] mt-5" type="submit" :loading="loading"> Create Indexer </BaseButton>
     </form>
   </ValidationObserver>
 </template>
 
 <script>
+import createIndexerMutation from '~/graphql/mutations/createIndexer.graphql';
+
 export default {
   name: 'MyIndexerCreateForm',
 
@@ -141,15 +142,34 @@ export default {
       form: {
         name: '',
         description: '',
-        repoUrl: '',
-        webUrl: '',
+        repo_url: '',
+        website_url: '',
       },
     };
   },
 
   methods: {
-    createIndexer() {
-      console.log('createIndexer', this.form);
+    async createIndexer() {
+      this.loading = true;
+
+      const project = await this.$apollo
+        .mutate({
+          mutation: createIndexerMutation,
+          variables: {
+            ...this.form,
+          },
+        })
+        .then(({ data }) => {
+          const { createIndexer } = data;
+
+          return createIndexer;
+        });
+
+      if (project && project.id) {
+        this.$router.push({ name: 'projects-id', params: { id: project.id } });
+      }
+
+      this.loading = false;
     },
   },
 };

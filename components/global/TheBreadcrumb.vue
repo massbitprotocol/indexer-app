@@ -14,7 +14,7 @@
         </li>
         <li>/</li>
         <li property="itemListElement" typeof="ListItem" class="text-neutral-darker">
-          <span property="name">Bifrost</span>
+          <span property="name">{{ slug }}</span>
           <meta property="position" content="2" />
         </li>
       </ol>
@@ -25,5 +25,12 @@
 <script>
 export default {
   name: 'TheBreadcrumb',
+
+  props: {
+    slug: {
+      type: String,
+      default: '',
+    },
+  },
 };
 </script>

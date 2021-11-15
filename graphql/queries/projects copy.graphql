@@ -1,9 +1,0 @@
-query getProjects {
-  projects {
-    id
-    image
-    name
-    slug
-    icon
-  }
-}

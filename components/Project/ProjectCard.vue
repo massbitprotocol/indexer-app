@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="{ name: 'projects-slug', params: { slug: project.slug } }"
+    :to="{ name: 'projects-id', params: { id: project.id } }"
     class="rounded-lg p-3 pb-4 space-y-3 transition duration-150 ease-out hover:shadow-project-card"
   >
     <div class="aspect-w-1 aspect-h-1">

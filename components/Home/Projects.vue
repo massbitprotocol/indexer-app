@@ -1,13 +1,9 @@
 <template>
   <ProjectSection>
-    <ProjectFilter class="mt-7.5" />
+    <ProjectFilter class="mt-7.5" :projects.sync="projects" />
 
     <ProjectList class="mt-10">
-      <ProjectCard
-        v-for="project in projects"
-        :key="project.id"
-        :project="project"
-      />
+      <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
     </ProjectList>
 
     <div class="mt-15 mx-auto max-w-xs">
@@ -17,10 +13,10 @@
 </template>
 
 <script>
-import getProjects from "~/graphql/queries/projects.graphql";
+import getProjects from '~/graphql/queries/projects.graphql';
 
 export default {
-  name: "HomeProjects",
+  name: 'HomeProjects',
 
   apollo: {
     projects: {

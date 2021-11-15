@@ -11,7 +11,10 @@
         </div>
       </div>
 
-      <BaseButton class="h-[52px] flex items-center justify-center gap-2">
+      <BaseButton
+        class="h-[52px] flex items-center justify-center gap-2"
+        @click="$router.push({ name: 'my-indexer-create' })"
+      >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fill-rule="evenodd"
@@ -30,7 +33,7 @@
 
       <BaseTabs class="mt-5" :headers="tabHeaders" :current-tab.sync="current_tab">
         <template #deployed>
-          <ProjectFilter />
+          <ProjectFilter :projects.sync="projects" />
 
           <ProjectList class="mt-10">
             <ProjectCard v-for="project in projects" :key="project.id" :project="project">

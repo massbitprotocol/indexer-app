@@ -1,13 +1,13 @@
 <template>
   <section>
-    <div class="container mx-auto">
+    <div>
       <div class="flex flex-col sm:items-center space-y-7.5 sm:flex-row sm:space-y-0 sm:space-x-7.5">
         <div class="flex-none mx-auto">
           <img
             src="https://picsum.photos/240/240?random=12"
             width="240"
             height="240"
-            alt="Bifrost"
+            :alt="project.name"
             class="object-cover object-center rounded-xl bg-neutral-grey w-60 h-60"
           />
         </div>
@@ -20,11 +20,15 @@
               class="rounded-full bg-neutral-grey w-6 h-6"
               alt=""
             />
-            <div class="text-neutral-mid">bifrost-finance</div>
+            <div class="text-neutral-mid">{{ project.slug }}</div>
           </div>
           <div class="mt-3 flex items-center flex-wrap space-x-5">
-            <h1 class="text-3xl sm:text-5xl text-neutral-darkest font-bold">Bifrost</h1>
-            <div class="bg-accent-green text-white uppercase px-3 py-2 rounded font-medium">Deployed</div>
+            <h1 class="text-3xl sm:text-5xl text-neutral-darkest font-bold">{{ project.name }}</h1>
+
+            <div v-if="project.deployed" class="bg-accent-green text-white uppercase px-3 py-2 rounded font-medium">
+              Deployed
+            </div>
+            <div v-else class="bg-accent-red text-white uppercase px-3 py-2 rounded font-medium">Undeployed</div>
           </div>
           <div class="mt-7.5 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             <div>
@@ -61,5 +65,14 @@
 <script>
 export default {
   name: 'ProjectInformation',
+
+  props: {
+    project: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+  },
 };
 </script>
