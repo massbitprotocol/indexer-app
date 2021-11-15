@@ -1,5 +1,5 @@
-query getProjects {
-  projects {
+query getProjects($deployed: Boolean, $network: String) {
+  projects(deployed: $deployed, network: $network) {
     id
     image
     name

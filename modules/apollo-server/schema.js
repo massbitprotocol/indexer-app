@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
   type Query {
-    projects: [Project]
+    projects(deployed: Boolean, network: String): [Project]
     project(id: String): Project
     filterProjectByName(name: String): [Project]
   }
@@ -23,6 +23,7 @@ const typeDefs = gql`
     website_url: String
     description: String
     deployed: Boolean
+    network: String
   }
 `;
 

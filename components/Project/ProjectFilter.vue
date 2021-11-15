@@ -4,6 +4,8 @@
       <div class="flex-full md:flex-1">
         <div class="flex rounded-full">
           <select
+            v-model="_filters.network"
+            @change="onSelectNetWork"
             role="button"
             class="
               flex
@@ -14,12 +16,13 @@
               px-7.5
             "
           >
-            <!-- <div>All Networks</div>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M5 8L10 13L15 8H5Z" fill="#13274C" />
-            </svg> -->
-            <option class="py-3" v-for="projectFilter in projectFilters" :key="projectFilter.key">
-              {{ projectFilter.name }}
+            <option
+              class="py-3"
+              v-for="networkFilter in networkFilters"
+              :key="networkFilter.key"
+              :value="networkFilter.key"
+            >
+              {{ networkFilter.name }}
             </option>
           </select>
 
@@ -100,10 +103,10 @@
 </template>
 
 <script>
-import { debounce } from 'lodash';
+import { debounce, cloneDeep } from 'lodash';
 import { filterProjectByName } from '~/graphql/queries/project.graphql';
 
-const projectFilters = [
+const networkFilters = [
   { key: 'all', name: 'All Networks' },
   { key: 'main', name: 'Mainnet' },
   { key: 'test', name: 'Testnet' },
@@ -116,11 +119,16 @@ export default {
       type: Array,
       default: () => [],
     },
+
+    filters: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   data() {
     return {
-      projectFilters,
+      networkFilters,
       filter: '',
       loading: false,
     };
@@ -134,6 +142,16 @@ export default {
 
       set(value) {
         this.$emit('update:projects', value);
+      },
+    },
+
+    _filters: {
+      get() {
+        return this.filters;
+      },
+
+      set(value) {
+        this.$emit('update:filters', value);
       },
     },
   },
@@ -156,6 +174,13 @@ export default {
 
       this.loading = false;
     }, 1000),
+
+    onSelectNetWork(event) {
+      const filters = cloneDeep(this._filters);
+      filters.network = event.target.value;
+
+      this._filters = filters;
+    },
   },
 };
 </script>

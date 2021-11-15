@@ -1,6 +1,6 @@
 <template>
   <ProjectSection>
-    <ProjectFilter class="mt-7.5" :projects.sync="projects" />
+    <ProjectFilter class="mt-7.5" :projects.sync="projects" :filters.sync="filters" />
 
     <ProjectList class="mt-10">
       <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
@@ -21,7 +21,19 @@ export default {
   apollo: {
     projects: {
       query: getProjects,
+      prefetch: true,
+      variables() {
+        return this.filters;
+      },
     },
+  },
+
+  data() {
+    return {
+      filters: {
+        network: 'all',
+      },
+    };
   },
 };
 </script>

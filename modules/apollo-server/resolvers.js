@@ -158,7 +158,49 @@ let projects = [
 
 const resolvers = {
   Query: {
-    projects: () => projects,
+    projects: (_, filters) => {
+      let _projects = cloneDeep(projects);
+      if (Object.keys(filters).length > 0) {
+        console.log('filters :>> ', filters);
+
+        return _projects.filter((project) => {
+          let filterCheck = true;
+
+          for (const key in filters) {
+            if (Object.hasOwnProperty.call(filters, key)) {
+              const filter = filters[key];
+
+              switch (typeof filter) {
+                case 'string':
+                  if (filter !== 'all') {
+                    filterCheck =
+                      (project.hasOwnProperty(key) &&
+                        project[key].toString().toLowerCase().includes(filter.toLowerCase())) * filterCheck;
+                  }
+                  break;
+
+                case 'boolean':
+                  filterCheck = (!!project[key] === filter) * filterCheck;
+
+                  break;
+
+                default:
+                  filterCheck = (project.hasOwnProperty(key) && project[key] === filter) * filterCheck;
+                  break;
+              }
+
+              if (filterCheck === false) {
+                return filterCheck;
+              }
+            }
+          }
+
+          return filterCheck;
+        });
+      }
+
+      return _projects;
+    },
     project: (_, { id }) => projects.find((project) => project.id === id),
     filterProjectByName: (_, { name }) =>
       projects.filter((project) => project.name && project.name.toLowerCase().includes(`${name}`.toLowerCase())),

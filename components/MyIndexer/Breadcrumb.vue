@@ -7,9 +7,10 @@
         class="flex items-center space-x-2 text-sm text-neutral-grey"
       >
         <li property="itemListElement" typeof="ListItem">
-          <NuxtLink :to="{ name: 'index' }" class="hover:underline" property="item" typeof="WebPage">
-            <span property="name">MassBit Explore</span>
+          <NuxtLink :to="{ name: 'my-indexer' }" class="hover:underline" property="item" typeof="WebPage">
+            <span property="name">My Indexer</span>
           </NuxtLink>
+
           <meta property="position" content="1" />
         </li>
         <li>/</li>
@@ -24,7 +25,7 @@
 
 <script>
 export default {
-  name: 'TheBreadcrumb',
+  name: 'MyIndexerBreadcrumb',
 
   props: {
     slug: {

@@ -33,10 +33,10 @@
 
       <BaseTabs class="mt-5" :headers="tabHeaders" :current-tab.sync="current_tab">
         <template #deployed>
-          <ProjectFilter :projects.sync="projects" />
+          <ProjectFilter :projects.sync="projects" :filters.sync="filters" />
 
           <ProjectList class="mt-10">
-            <ProjectCard v-for="project in projects" :key="project.id" :project="project">
+            <ProjectCard v-for="project in projects" :key="project.id" :project="project" routerName="my-indexer-id">
               <template #action>
                 <div class="flex items-center justify-between">
                   <div
@@ -70,15 +70,14 @@
         </template>
 
         <template #undeployed>
-          <ProjectFilter />
+          <ProjectFilter :projects.sync="projects" :filters.sync="filters" />
 
           <ProjectList class="mt-10">
-            <ProjectCard v-for="project in projects" :key="project.id" :project="project">
+            <ProjectCard v-for="project in projects" :key="project.id" :project="project" routerName="my-indexer-id">
               <template #action>
                 <div class="flex items-center justify-between">
                   <div
                     class="
-                      w-[84px]
                       flex
                       items-center
                       justify-center
@@ -111,6 +110,7 @@
 </template>
 
 <script>
+import { cloneDeep } from 'lodash';
 import getProjects from '~/graphql/queries/projects.graphql';
 
 const tabHeaders = [
@@ -129,6 +129,10 @@ export default {
   apollo: {
     projects: {
       query: getProjects,
+      prefetch: true,
+      variables() {
+        return this.filters;
+      },
     },
   },
 
@@ -136,7 +140,25 @@ export default {
     return {
       tabHeaders,
       current_tab: 'deployed',
+      filters: {
+        network: 'all',
+        deployed: true,
+      },
     };
+  },
+
+  watch: {
+    current_tab(value) {
+      let deployed = false;
+      if (value === 'deployed') {
+        deployed = true;
+      }
+
+      const filters = cloneDeep(this.filters);
+      filters.deployed = deployed;
+
+      this.filters = filters;
+    },
   },
 };
 </script>

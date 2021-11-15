@@ -166,7 +166,7 @@ export default {
         });
 
       if (project && project.id) {
-        this.$router.push({ name: 'projects-id', params: { id: project.id } });
+        this.$router.push({ name: 'my-indexer-id', params: { id: project.id } });
       }
 
       this.loading = false;
