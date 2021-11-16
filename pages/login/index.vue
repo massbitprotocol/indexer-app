@@ -10,9 +10,8 @@
         <BaseGhostButton
           class="w-full h-[52px] flex items-center gap-2"
           type="submit"
-          @click="loginWithGithub"
-          :disabled="invalid"
           :loading="loading"
+          @click="loginWithGithub"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -138,7 +137,9 @@ export default {
   methods: {
     userLogin() {
       this.loading = true;
+
       console.log('Login');
+
       this.loading = false;
     },
 

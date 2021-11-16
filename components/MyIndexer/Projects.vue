@@ -1,11 +1,11 @@
 <template>
   <div class="mt-15">
-    <div class="w-full flex items-center justify-between p-5 rounded-lg bg-neutral-lightest">
+    <div v-if="$auth.user" class="w-full flex items-center justify-between p-5 rounded-lg bg-neutral-lightest">
       <div class="flex items-center">
-        <img src="/assets/svg/avatar.svg" class="w-auto h-[80px] mr-3" alt="" loading="lazy" />
+        <img :src="$auth.user.avatar_url" class="w-auto h-[80px] rounded-full mr-3" alt="" loading="lazy" />
 
         <div class="flex flex-col">
-          <div class="text-title-2 text-neutral-darkest font-bold">OnFinality-io</div>
+          <div class="text-title-2 text-neutral-darkest font-bold">{{ $auth.user.name }}</div>
 
           <div class="text-body-2 text-neutral/darker">0xf0c1 — 0b0b1c</div>
         </div>
@@ -134,6 +134,10 @@ export default {
         return this.filters;
       },
     },
+  },
+
+  created() {
+    console.log('this.$auth :>> ', this.$auth.user);
   },
 
   data() {

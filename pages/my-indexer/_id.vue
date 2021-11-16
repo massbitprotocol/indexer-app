@@ -4,7 +4,7 @@
       <MyIndexerBreadcrumb :slug="project.name" />
       <!-- end breadcrumb -->
 
-      <ProjectInformation class="py-7.5" :project="project" />
+      <ProjectInformation class="py-7.5" :project="project" :menu="menu" />
       <!-- end information -->
 
       <ProjectOverview class="py-7.5" />
@@ -36,6 +36,17 @@ export default {
         return { id: this.$route.params.id };
       },
     },
+  },
+
+  data() {
+    return {
+      menu: [
+        {
+          key: 'edit',
+          value: 'Edit Project',
+        },
+      ],
+    };
   },
 };
 </script>
