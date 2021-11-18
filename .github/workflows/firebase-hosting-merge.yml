@@ -23,7 +23,7 @@ jobs:
           echo API_SOL_INDEX_URL=${{ secrets.API_SOL_INDEX_URL }} >> .env
           echo API_ETH_INDEX_URL=${{ secrets.API_ETH_INDEX_URL }} >> .env
       - uses: actions/checkout@v2
-      - run: yarn install && yarn build && yarn generate
+      - run: yarn install && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         env:
           API_SUB_INDEX_URL: https://sub-index.massbit.io
