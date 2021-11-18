@@ -20,6 +20,7 @@ export default {
   },
 
   ssr: false,
+  target: 'static',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/css/fonts.css'],
