@@ -36,13 +36,13 @@ export default {
 
   publicRuntimeConfig: {
     axios: {
-      baseURL: process.env.API_BASE_URL,
+      baseURL: process.env.API_SUB_INDEX_URL,
     },
   },
 
   privateRuntimeConfig: {
     axios: {
-      baseURL: process.env.API_BASE_URL,
+      baseURL: process.env.API_SUB_INDEX_URL,
     },
   },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
