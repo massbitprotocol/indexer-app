@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <embed src="https://rickandmortyapi.com/graphql/" class="-mt-2 w-full h-[48rem] rounded-lg" />
+      <embed :src="projectPlaygroundURL" class="-mt-2 w-full h-[48rem] rounded-lg" />
     </div>
   </section>
 </template>
@@ -28,5 +28,11 @@
 <script>
 export default {
   name: 'ProjectPlayground',
+
+  data() {
+    return {
+      projectPlaygroundURL: 'http://localhost:3002',
+    };
+  },
 };
 </script>

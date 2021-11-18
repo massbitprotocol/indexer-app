@@ -86,7 +86,7 @@
               leading-tight
             "
             id="grid-repo-url"
-            v-model.trim="form.repo_url"
+            v-model.trim="form.repository"
             type="text"
             placeholder="Repository URL"
           />
@@ -131,8 +131,6 @@
 </template>
 
 <script>
-import createIndexerMutation from '~/graphql/mutations/createIndexer.graphql';
-
 export default {
   name: 'MyIndexerCreateForm',
 
@@ -143,7 +141,7 @@ export default {
       form: {
         name: '',
         description: '',
-        repo_url: '',
+        repository: '',
         website_url: '',
         image: '',
       },
@@ -160,19 +158,7 @@ export default {
         this.form.image = this.preview;
       }
 
-      const project = await this.$apollo
-        .mutate({
-          mutation: createIndexerMutation,
-          variables: {
-            ...this.form,
-          },
-        })
-        .then(({ data }) => {
-          const { createIndexer } = data;
-
-          return createIndexer;
-        });
-
+      const project = await this.$store.dispatch('indexers/create', this.form);
       if (project && project.id) {
         this.$router.push({ name: 'my-indexer-id', params: { id: project.id } });
       }

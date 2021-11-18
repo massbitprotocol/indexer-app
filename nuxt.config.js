@@ -19,6 +19,8 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  ssr: false,
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/css/fonts.css'],
 
@@ -32,10 +34,17 @@ export default {
     color,
   },
 
-  publicRuntimeConfig: {},
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: process.env.API_BASE_URL,
+    },
+  },
 
-  privateRuntimeConfig: {},
-
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.API_BASE_URL,
+    },
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
@@ -88,6 +97,7 @@ export default {
   dayjs: {},
 
   sitemap: {
+    hostname: 'https://solanalytic.massbit.io',
     gzip: true,
   },
 

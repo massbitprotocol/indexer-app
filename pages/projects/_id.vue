@@ -1,10 +1,10 @@
 <template>
   <div class="pb-14">
-    <template v-if="project">
-      <TheBreadcrumb :slug="project.name" />
+    <template v-if="indexer">
+      <TheBreadcrumb :slug="indexer.name" />
       <!-- end breadcrumb -->
 
-      <ProjectInformation class="py-7.5" :project="project" />
+      <ProjectInformation class="py-7.5" :project="indexer" />
       <!-- end information -->
 
       <ProjectOverview class="py-7.5" />
@@ -13,28 +13,32 @@
       <!-- <ProjectIndexerTable class="py-7.5" /> -->
       <!-- end indexer table -->
 
-      <ProjectPlayground v-if="project.deployed" class="py-7.5" />
+      <ProjectPlayground v-if="indexer.deployed" class="py-7.5" />
       <!-- end playground -->
 
-      <ProjectDeployment v-else :project.sync="project" />
+      <ProjectDeployment v-else :project.sync="indexer" />
       <!-- end deployment -->
     </template>
   </div>
 </template>
 
 <script>
-import { getProjectByID } from '~/graphql/queries/project.graphql';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Project',
 
-  apollo: {
-    project: {
-      query: getProjectByID,
-      prefetch: ({ route }) => ({ id: route.params.id }),
-      variables() {
-        return { id: this.$route.params.id };
-      },
+  async fetch() {
+    await this.$store.dispatch('indexers/fetchByID', this.id);
+  },
+
+  computed: {
+    ...mapGetters({
+      indexer: 'indexers/getCurrent',
+    }),
+
+    id() {
+      return this.$route.params.id || null;
     },
   },
 };
