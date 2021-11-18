@@ -6,11 +6,14 @@
     <div class="aspect-w-1 aspect-h-1">
       <img
         loading="lazy"
-        :src="project.image"
+        :src="
+          project.image ||
+          'https://previews.dropbox.com/p/thumb/ABWpEtxTxHKBizo6xH-m1bIN7AwZMGPuZCVNFcAdKmkCFYoTcoCGu5DiVN3ne9n9RJYkZksqYcljJ3YNua9zP-83uI36x-MV6Frx7rmfJRPisZStuHtoLew_eJEms6ycc-8yi-w1xnS8RMMMwCZu6nw9gwbB40y0jJT3ObJdUGhfn3In8rhBtPvOdm6RN6wopnxeVn-YwPbcdDMdUz2aWRR0HHkKpjmYgWzFduViRfQXHCqpnCeRPOsJvWMjr0pQmL-xjTJPWAcRw8N3Ps7GlgLgq_-L8BuoaGFpXetmq-FTwudJZN_1Z3ozT_1cnr-x7VRTJecwl7vrZSIrlQ93jT_MmL5YKTXHGSmogtVRtgGSOw/p.png'
+        "
         width="234"
         height="234"
         alt=""
-        class="object-cover object-center rounded-lg bg-neutral-grey w-full"
+        class="object-cover object-center rounded-lg w-full"
       />
     </div>
 
@@ -22,7 +25,7 @@
           width="40"
           height="40"
           alt="Profile Picture"
-          class="rounded-full w-10 h-10 bg-neutral-grey"
+          class="rounded-full w-10 h-10"
         />
       </div>
       <div>

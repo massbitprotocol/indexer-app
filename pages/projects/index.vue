@@ -28,9 +28,5 @@ export default {
       query: getProjects,
     },
   },
-
-  created() {
-    console.log('this.projects :>> ', this.projects);
-  },
 };
 </script>

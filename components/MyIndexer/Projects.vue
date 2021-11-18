@@ -33,47 +33,67 @@
 
       <BaseTabs class="mt-5" :headers="tabHeaders" :current-tab.sync="current_tab">
         <template #deployed>
-          <ProjectFilter :projects.sync="projects" :filters.sync="filters" />
+          <div v-if="$fetchState.pending" class="h-full flex items-center justify-center py-20">
+            <svg
+              class="animate-spin -ml-1 mr-3 h-8 w-8 text-primary"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
 
-          <ProjectList class="mt-10">
-            <ProjectCard v-for="project in projects" :key="project.id" :project="project" routerName="my-indexer-id">
-              <template #action>
-                <div class="flex items-center justify-between">
-                  <div
-                    class="
-                      w-[84px]
-                      flex
-                      items-center
-                      justify-center
-                      px-2
-                      py-1
-                      uppercase
-                      text-caption
-                      font-semibold
-                      text-white
-                      bg-accent-green
-                      rounded
-                    "
-                  >
-                    Deployed
+            <span class="text-body-1 text-neutral-normal"> Loading... </span>
+          </div>
+
+          <div v-else>
+            <ProjectFilter :projects.sync="indexers" :filters.sync="filters" />
+
+            <ProjectList class="mt-10">
+              <ProjectCard v-for="project in indexers" :key="project.id" :project="project" router-name="my-indexer-id">
+                <template #action>
+                  <div class="flex items-center justify-between">
+                    <div
+                      class="
+                        w-[84px]
+                        flex
+                        items-center
+                        justify-center
+                        px-2
+                        py-1
+                        uppercase
+                        text-caption
+                        font-semibold
+                        text-white
+                        bg-accent-green
+                        rounded
+                      "
+                    >
+                      Deployed
+                    </div>
+
+                    <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
                   </div>
+                </template>
+              </ProjectCard>
+            </ProjectList>
 
-                  <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
-                </div>
-              </template>
-            </ProjectCard>
-          </ProjectList>
-
-          <div class="mt-15 mx-auto max-w-xs">
-            <TheLoadMoreButton />
+            <div class="mt-15 mx-auto max-w-xs">
+              <TheLoadMoreButton />
+            </div>
           </div>
         </template>
 
         <template #draft>
-          <ProjectFilter :projects.sync="projects" :filters.sync="filters" />
+          <ProjectFilter :projects.sync="indexers" :filters.sync="filters" />
 
           <ProjectList class="mt-10">
-            <ProjectCard v-for="project in projects" :key="project.id" :project="project" routerName="my-indexer-id">
+            <ProjectCard v-for="project in indexers" :key="project.id" :project="project" router-ame="my-indexer-id">
               <template #action>
                 <div class="flex items-center justify-between">
                   <div
@@ -110,8 +130,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { cloneDeep } from 'lodash';
-import getProjects from '~/graphql/queries/projects.graphql';
 
 const tabHeaders = [
   {
@@ -126,18 +146,8 @@ const tabHeaders = [
 export default {
   name: 'MyIndexerProjects',
 
-  apollo: {
-    projects: {
-      query: getProjects,
-      prefetch: true,
-      variables() {
-        return this.filters;
-      },
-    },
-  },
-
-  created() {
-    console.log('this.$auth :>> ', this.$auth.user);
+  async fetch() {
+    await this.$store.dispatch('indexers/fetchAll');
   },
 
   data() {
@@ -149,6 +159,12 @@ export default {
         deployed: true,
       },
     };
+  },
+
+  computed: {
+    ...mapGetters({
+      indexers: 'indexers/list',
+    }),
   },
 
   watch: {

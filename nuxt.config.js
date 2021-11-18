@@ -26,7 +26,12 @@ export default {
   css: ['~/assets/css/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/validate', ssr: true }],
+  plugins: [
+    { src: '~/plugins/validate', ssr: true },
+    '~/plugins/api/subApi.js',
+    '~/plugins/api/solApi.js',
+    '~/plugins/api/ethApi.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -35,15 +40,24 @@ export default {
     color,
   },
 
+  env: {
+    // Substrate Indexer
+    subUrl: process.env.API_SUB_INDEX_URL,
+    // Solana indexer
+    solUrl: process.env.API_SOL_INDEX_URL,
+    // Ethereum indexer
+    ethUrl: process.env.API_ETH_INDEX_URL,
+  },
+
   publicRuntimeConfig: {
     axios: {
-      baseURL: process.env.API_SUB_INDEX_URL,
+      baseURL: process.env.API_BASE_URL,
     },
   },
 
   privateRuntimeConfig: {
     axios: {
-      baseURL: process.env.API_SUB_INDEX_URL,
+      baseURL: process.env.API_BASE_URL,
     },
   },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

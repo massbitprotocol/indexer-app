@@ -143,7 +143,7 @@ export default {
         description: '',
         repository: '',
         website_url: '',
-        image: '',
+        image: 'https://www.massbit.io/img/logo.svg',
       },
 
       preview: null,

@@ -2,14 +2,13 @@
   <div>
     <ul class="flex">
       <template v-for="header in headers">
-        <li class="mr-1" :key="header.key" @click="_currentTab = header.key">
+        <li :key="header.key" class="mr-1" @click="_currentTab = header.key">
           <a
             :class="{
               'bg-white text-primary font-bold border-b-2 border-primary': _currentTab === header.key,
               'bg-transparent text-neutral-grey font-semibold': !(_currentTab === header.key),
-              'text-body-1 inline-block rounded-t-xl py-3 mr-5 hover:text-blue-500 focus:outline-none uppercase': true,
+              'text-body-1 inline-block rounded-t-xl py-3 mr-5 hover:text-blue-500 focus:outline-none uppercase cursor-pointer': true,
             }"
-            href="#"
           >
             {{ header.name }}
           </a>
@@ -19,7 +18,7 @@
 
     <div class="w-full mt-7.5 bg-white rounded-xl rounded-t-none">
       <template v-for="header in headers">
-        <div :key="header.key" v-show="header.key === _currentTab">
+        <div v-show="header.key === _currentTab" :key="header.key">
           <slot :name="header.key" />
         </div>
       </template>
