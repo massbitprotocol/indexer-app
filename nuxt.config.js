@@ -98,7 +98,7 @@ export default {
   dayjs: {},
 
   sitemap: {
-    hostname: 'https://solanalytic.massbit.io',
+    hostname: 'https://indexer-app.web.app/',
     gzip: true,
   },
 
