@@ -1,7 +1,7 @@
 <template>
   <div class="pb-14">
     <template v-if="indexer">
-      <TheBreadcrumb :slug="indexer.name" />
+      <TheBreadcrumb :slug="indexer.name" :main-router="{ name: 'My Indexer', to: { name: 'my-indexer' } }" />
       <!-- end breadcrumb -->
 
       <ProjectInformation class="py-7.5" :project="indexer" />

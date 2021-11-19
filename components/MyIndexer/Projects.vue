@@ -60,7 +60,7 @@
                   v-for="project in indexers"
                   :key="project.id"
                   :project="project"
-                  router-name="my-indexer-id"
+                  router-name="my-indexer-indexer-id"
                 >
                   <template #action>
                     <div class="flex items-center justify-between">

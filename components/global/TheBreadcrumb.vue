@@ -7,8 +7,8 @@
         class="flex items-center space-x-2 text-sm text-neutral-grey"
       >
         <li property="itemListElement" typeof="ListItem">
-          <NuxtLink :to="{ name: 'index' }" class="hover:underline" property="item" typeof="WebPage">
-            <span property="name">Smart Contract Indexer</span>
+          <NuxtLink :to="mainRouter.to" class="hover:underline" property="item" typeof="WebPage">
+            <span property="name">{{ mainRouter.name }}</span>
           </NuxtLink>
           <meta property="position" content="1" />
         </li>
@@ -30,6 +30,11 @@ export default {
     slug: {
       type: String,
       default: '',
+    },
+
+    mainRouter: {
+      type: Object,
+      default: () => ({ name: 'Smart Contract Indexer', to: { name: 'index' } }),
     },
   },
 };
