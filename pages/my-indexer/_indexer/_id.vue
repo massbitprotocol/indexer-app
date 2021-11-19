@@ -7,7 +7,7 @@
       <ProjectInformation class="py-7.5" :project="indexer" />
       <!-- end information -->
 
-      <ProjectOverview class="py-7.5" />
+      <ProjectOverview class="py-7.5" :project="indexer" />
       <!-- end overview -->
 
       <!-- <ProjectIndexerTable class="py-7.5" /> -->

@@ -11,12 +11,12 @@
               Healthy
             </div>
           </div>
-          <div class="flex items-center space-x-3">
+          <!-- <div class="flex items-center space-x-3">
             <div class="text-neutral-mid">Indexer</div>
             <div class="bg-accent-red text-white uppercase rounded font-medium text-sm px-2 py-1 sm:px-3 sm:py-2">
               Unhealthy
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 

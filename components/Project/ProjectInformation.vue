@@ -101,7 +101,7 @@
             <div>
               <div class="text-neutral-grey">Project ID</div>
               <div class="flex items-center space-x-2">
-                <div class="leading-9 text-neutral-darker font-medium truncate select-all">0x2382—5253-0</div>
+                <div class="leading-9 text-neutral-darker font-medium truncate select-all">{{ project.id }}</div>
                 <TheCopyButton class="flex-none" text-to-copy="0x2382—5253-0" />
               </div>
             </div>

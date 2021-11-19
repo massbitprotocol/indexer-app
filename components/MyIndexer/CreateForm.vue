@@ -155,12 +155,14 @@ export default {
       this.loading = true;
 
       if (this.preview) {
-        this.form.image = this.preview;
+        this.form.image =
+          'https://previews.dropbox.com/p/thumb/ABWpEtxTxHKBizo6xH-m1bIN7AwZMGPuZCVNFcAdKmkCFYoTcoCGu5DiVN3ne9n9RJYkZksqYcljJ3YNua9zP-83uI36x-MV6Frx7rmfJRPisZStuHtoLew_eJEms6ycc-8yi-w1xnS8RMMMwCZu6nw9gwbB40y0jJT3ObJdUGhfn3In8rhBtPvOdm6RN6wopnxeVn-YwPbcdDMdUz2aWRR0HHkKpjmYgWzFduViRfQXHCqpnCeRPOsJvWMjr0pQmL-xjTJPWAcRw8N3Ps7GlgLgq_-L8BuoaGFpXetmq-FTwudJZN_1Z3ozT_1cnr-x7VRTJecwl7vrZSIrlQ93jT_MmL5YKTXHGSmogtVRtgGSOw/p.png';
       }
 
       const project = await this.$store.dispatch('indexers/create', this.form);
       if (project && project.id) {
-        this.$router.push({ name: 'my-indexer-id', params: { id: project.id } });
+        // this.$router.push({ name: 'my-indexer-id', params: { id: project.id } });
+        this.$router.push({ name: 'my-indexer' });
       }
 
       this.loading = false;

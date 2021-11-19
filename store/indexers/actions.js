@@ -16,6 +16,7 @@ export default {
         if (Array.isArray(resSubIndexer)) {
           const _subIndexer = resSubIndexer.map((indexer) => ({
             ...indexer,
+            deployed: true,
             indexer: 'substrate',
           }));
 
@@ -27,6 +28,7 @@ export default {
             ...indexer,
             id: indexer.hash,
             repository: indexer.repo,
+            deployed: true,
             indexer: 'solana',
           }));
 
@@ -57,6 +59,7 @@ export default {
             ...indexer,
             id: indexer.hash,
             repository: indexer.repo,
+            deployed: true,
             indexer: 'solana',
           }));
 
@@ -70,6 +73,7 @@ export default {
         parseData = (items) =>
           items.map((indexer) => ({
             ...indexer,
+            deployed: true,
             indexer: 'substrate',
           }));
 
@@ -105,7 +109,13 @@ export default {
         client = this.$solApi;
 
         // Set compile function
-        parseData = (indexer) => ({ ...indexer, id: indexer.hash, repository: indexer.repo, indexer: 'solana' });
+        parseData = (indexer) => ({
+          ...indexer,
+          id: indexer.hash,
+          repository: indexer.repo,
+          deployed: true,
+          indexer: 'solana',
+        });
 
         break;
 
@@ -114,7 +124,11 @@ export default {
         client = this.$subApi;
 
         // Set compile function
-        parseData = (indexer) => ({ ...indexer, indexer: 'substrate' });
+        parseData = (indexer) => ({
+          ...indexer,
+          deployed: true,
+          indexer: 'substrate',
+        });
 
         break;
     }

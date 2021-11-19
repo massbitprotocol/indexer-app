@@ -16,7 +16,8 @@
           md:flex-row md:space-y-0 md:space-x-7.5
         "
       >
-        <div class="w-full md:w-7/12">
+        <div class="w-full md:w-7/12" v-if="project.description" v-html="project.description"></div>
+        <div class="w-full md:w-7/12" v-else>
           <div class="text-neutral-grey text-sm">Description</div>
           <div class="mt-1 font-medium text-neutral-mid prose prose-sm max-w-full">
             <p>
@@ -32,10 +33,13 @@
             </ul>
           </div>
         </div>
+
         <div class="w-full md:w-5/12 space-y-5">
           <div>
             <div class="text-neutral-grey text-sm">Network</div>
-            <div class="mt-1 font-medium text-neutral-mid text-sm">Bifrost Asgard CC4</div>
+            <div class="capitalize mt-1 font-medium text-neutral-mid text-sm">
+              {{ project.network || 'Bifrost Asgard CC4' }}
+            </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div>
@@ -78,5 +82,12 @@
 <script>
 export default {
   name: 'ProjectOverview',
+
+  props: {
+    project: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
 };
 </script>
