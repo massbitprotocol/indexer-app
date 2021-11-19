@@ -104,7 +104,6 @@
 
 <script>
 import { debounce, cloneDeep } from 'lodash';
-import { filterProjectByName } from '~/graphql/queries/project.graphql';
 
 const networkFilters = [
   { key: 'all', name: 'All Networks' },
@@ -157,20 +156,10 @@ export default {
   },
 
   methods: {
-    filterProjects: debounce(async function () {
+    filterProjects: debounce(function () {
       this.loading = true;
 
-      const res = await this.$apollo
-        .query({
-          query: filterProjectByName,
-          variables: { name: this.filter },
-        })
-        .then(({ data: { filterProjectByName } }) => ({
-          data: filterProjectByName,
-        }));
-      if (res.data) {
-        this._projects = res.data;
-      }
+      this._projects = [];
 
       this.loading = false;
     }, 1000),

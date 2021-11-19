@@ -81,8 +81,6 @@
 </template>
 
 <script>
-import deployProjectMutation from '~/graphql/mutations/deployProject.graphql';
-
 export default {
   name: 'ProjectDeployment',
 
@@ -104,25 +102,9 @@ export default {
     showModalDeployIndexer() {
       this.modalDeployIndexer = true;
 
-      setTimeout(async () => {
-        const project = await this.$apollo
-          .mutate({
-            mutation: deployProjectMutation,
-            variables: {
-              id: this.project.id,
-            },
-          })
-          .then(({ data }) => {
-            const { deployProject } = data;
-
-            return deployProject;
-          });
-
-        if (project && project.deployed) {
-          this.status = 'success';
-        } else {
-          this.status = 'error';
-        }
+      setTimeout(() => {
+        console.log('project :>> ', this.project);
+        this.status = 'success';
       }, 3000);
     },
   },

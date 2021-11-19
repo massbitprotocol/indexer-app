@@ -131,20 +131,8 @@
 </template>
 
 <script>
-import { getProjectByID } from '~/graphql/queries/project.graphql';
-
 export default {
   name: 'MyIndexerEditForm',
-
-  apollo: {
-    project: {
-      query: getProjectByID,
-      prefetch: ({ route }) => ({ id: route.params.id }),
-      variables() {
-        return { id: this.$route.params.id };
-      },
-    },
-  },
 
   created() {
     if (this.project && this.project.image) {

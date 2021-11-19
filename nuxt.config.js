@@ -19,7 +19,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  ssr: false,
+  // ssr: false,
   target: 'static',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -85,12 +85,12 @@ export default {
     // https://sitemap.nuxtjs.org/
     '@nuxtjs/sitemap',
     // https://github.com/nuxt-community/robots-module
-    '@nuxtjs/robots',
-    // https://github.com/nuxt-community/apollo-module
-    '@nuxtjs/apollo',
+    // '@nuxtjs/robots',
+    // // https://github.com/nuxt-community/apollo-module
+    // '@nuxtjs/apollo',
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
-    '~/modules/apollo-server',
+    // '~/modules/apollo-server',
   ],
 
   auth: {
@@ -121,11 +121,11 @@ export default {
     Allow: '/',
   },
 
-  apollo: {
-    clientConfigs: {
-      default: '~/apollo.config.js',
-    },
-  },
+  // apollo: {
+  //   clientConfigs: {
+  //     default: '~/apollo.config.js',
+  //   },
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
