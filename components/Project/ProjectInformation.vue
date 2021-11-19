@@ -6,7 +6,7 @@
           <img
             :src="
               project.image ||
-              'https://previews.dropbox.com/p/thumb/ABWpEtxTxHKBizo6xH-m1bIN7AwZMGPuZCVNFcAdKmkCFYoTcoCGu5DiVN3ne9n9RJYkZksqYcljJ3YNua9zP-83uI36x-MV6Frx7rmfJRPisZStuHtoLew_eJEms6ycc-8yi-w1xnS8RMMMwCZu6nw9gwbB40y0jJT3ObJdUGhfn3In8rhBtPvOdm6RN6wopnxeVn-YwPbcdDMdUz2aWRR0HHkKpjmYgWzFduViRfQXHCqpnCeRPOsJvWMjr0pQmL-xjTJPWAcRw8N3Ps7GlgLgq_-L8BuoaGFpXetmq-FTwudJZN_1Z3ozT_1cnr-x7VRTJecwl7vrZSIrlQ93jT_MmL5YKTXHGSmogtVRtgGSOw/p.png'
+              'https://uc7f67781f2c016dd4504188aacb.dl.dropboxusercontent.com/cd/0/inline/BaRWOCbBwGYivXz_oselBQX3grtitXW7l1abGkeIqcznz_0kCSIDAF4LisLKGPKfaLftFEmz_55V_dRIfToQL2l285gvOawDDUPo9M1hfUVPKlTWzsUXb80rPctM1EwxyWJWO16rKiuNnZwXFPn5QzT5/file#'
             "
             width="240"
             height="240"
