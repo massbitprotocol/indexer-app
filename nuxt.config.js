@@ -19,9 +19,6 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  // ssr: false,
-  target: 'static',
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/css/fonts.css'],
 
@@ -86,11 +83,8 @@ export default {
     '@nuxtjs/sitemap',
     // https://github.com/nuxt-community/robots-module
     // '@nuxtjs/robots',
-    // // https://github.com/nuxt-community/apollo-module
-    // '@nuxtjs/apollo',
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
-    // '~/modules/apollo-server',
   ],
 
   auth: {
@@ -112,7 +106,6 @@ export default {
   dayjs: {},
 
   sitemap: {
-    hostname: 'https://indexer-app.web.app/',
     gzip: true,
   },
 
@@ -120,12 +113,6 @@ export default {
     UserAgent: '*',
     Allow: '/',
   },
-
-  // apollo: {
-  //   clientConfigs: {
-  //     default: '~/apollo.config.js',
-  //   },
-  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
