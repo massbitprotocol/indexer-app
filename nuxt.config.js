@@ -81,8 +81,6 @@ export default {
     '@nuxtjs/dayjs',
     // https://sitemap.nuxtjs.org/
     '@nuxtjs/sitemap',
-    // https://github.com/nuxt-community/robots-module
-    // '@nuxtjs/robots',
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
   ],
@@ -107,11 +105,6 @@ export default {
 
   sitemap: {
     gzip: true,
-  },
-
-  robots: {
-    UserAgent: '*',
-    Allow: '/',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
