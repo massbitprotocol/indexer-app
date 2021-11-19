@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="{ name: routerName, params: { id: project.id } }"
+    :to="{ name: routerName, params: { id: project.id, indexer: project.indexer } }"
     class="rounded-lg p-3 pb-4 space-y-3 transition duration-150 ease-out hover:shadow-project-card"
   >
     <div class="aspect-w-1 aspect-h-1">
@@ -54,7 +54,7 @@ export default {
 
     routerName: {
       type: String,
-      default: 'projects-id',
+      default: 'projects-indexer-id',
     },
   },
 };

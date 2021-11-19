@@ -1,5 +1,6 @@
 export default {
   async fetchAll({ commit }) {
+    // Init client
     const clientSubIndexers = this.$subApi.$get('indexers', {}, { progress: false }).catch((error) => {
       return error;
     });
@@ -11,11 +12,25 @@ export default {
       ([resSubIndexer, resSolIndexers]) => {
         const _indexers = [];
 
+        // Substrate indexer
         if (Array.isArray(resSubIndexer)) {
-          _indexers.push(...resSubIndexer);
+          const _subIndexer = resSubIndexer.map((indexer) => ({
+            ...indexer,
+            indexer: 'substrate',
+          }));
+
+          _indexers.push(..._subIndexer);
         }
+        // Solana indexer
         if (Array.isArray(resSolIndexers)) {
-          _indexers.push(...resSolIndexers);
+          const _solIndexer = resSolIndexers.map((indexer) => ({
+            ...indexer,
+            id: indexer.hash,
+            repository: indexer.repo,
+            indexer: 'solana',
+          }));
+
+          _indexers.push(..._solIndexer);
         }
 
         return _indexers;
@@ -28,16 +43,36 @@ export default {
   },
 
   async fetch({ commit }, indexer) {
-    let client;
+    let client, parseData;
 
     // Get client by indexer
     switch (indexer) {
       case 'solana':
+        // Set client
         client = this.$solApi;
+
+        // Set compile function
+        parseData = (items) =>
+          items.map((indexer) => ({
+            ...indexer,
+            id: indexer.hash,
+            repository: indexer.repo,
+            indexer: 'solana',
+          }));
+
         break;
 
       default:
+        // Set client
         client = this.$subApi;
+
+        // Set compile function
+        parseData = (items) =>
+          items.map((indexer) => ({
+            ...indexer,
+            indexer: 'substrate',
+          }));
+
         break;
     }
 
@@ -45,9 +80,11 @@ export default {
       // Start fetch data
       const indexers = await client.$get('indexers', {}, { progress: false });
       if (indexers) {
-        commit('setList', indexers);
+        const _indexers = parseData(indexers);
 
-        return indexers;
+        commit('setList', _indexers);
+
+        return _indexers;
       }
     } catch (error) {
       console.log('error :>> ', error);
@@ -58,12 +95,36 @@ export default {
     return [];
   },
 
-  async fetchByID({ commit }, id) {
-    const data = await this.$subApi.$get(`indexers/${id}`, {}, { progress: false });
-    if (data) {
-      commit('setCurrent', data);
+  async fetchByID({ commit }, { id, indexer }) {
+    let client, parseData;
 
-      return data;
+    // Get client by indexer
+    switch (indexer) {
+      case 'solana':
+        // Set client
+        client = this.$solApi;
+
+        // Set compile function
+        parseData = (indexer) => ({ ...indexer, id: indexer.hash, repository: indexer.repo, indexer: 'solana' });
+
+        break;
+
+      default:
+        // Set client
+        client = this.$subApi;
+
+        // Set compile function
+        parseData = (indexer) => ({ ...indexer, indexer: 'substrate' });
+
+        break;
+    }
+
+    const data = await client.$get(`indexers/${id}`, {}, { progress: false });
+    if (data) {
+      const _data = parseData(data);
+      commit('setCurrent', _data);
+
+      return _data;
     }
 
     commit('setCurrent', null);

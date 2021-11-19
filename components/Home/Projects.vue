@@ -75,7 +75,7 @@ export default {
     await this.$store.dispatch('indexers/fetch', this.current_tab);
   },
 
-  fetchDelay: 1500,
+  fetchDelay: 500,
 
   watch: {
     current_tab(tab) {

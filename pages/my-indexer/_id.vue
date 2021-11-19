@@ -10,9 +10,6 @@
       <ProjectOverview class="py-7.5" />
       <!-- end overview -->
 
-      <!-- <ProjectIndexerTable class="py-7.5" /> -->
-      <!-- end indexer table -->
-
       <ProjectPlayground v-if="project.deployed" class="py-7.5" />
       <!-- end playground -->
 
