@@ -151,4 +151,8 @@ export default {
 
     return data;
   },
+
+  async uploadImage({ commit }, form) {
+    return await this.$axios.$post('upload-file', form, { progress: false });
+  },
 };

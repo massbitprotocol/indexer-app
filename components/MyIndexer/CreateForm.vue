@@ -4,7 +4,7 @@
       <div class="text-body-1 text-neutral-darkest font-semibold">Indexer Logo</div>
       <div class="mt-1 text-body-2 text-neutral-grey font-semibold">File types supported: JPG, PNG. Max size: 4 MB</div>
 
-      <BaseUploadFile :preview.sync="preview" />
+      <BaseUploadFile :preview.sync="form.imageUrl" @on-read-file="onReadFile" :loading="loadingUploadImage" />
 
       <ValidationProvider v-slot="{ errors }" rules="required" name="indexer name" tag="div" class="w-full mt-5">
         <div>
@@ -114,7 +114,7 @@
               leading-tight
             "
             id="grid-repo-url"
-            v-model.trim="form.website_url"
+            v-model.trim="form.websiteUrl"
             type="text"
             placeholder="Website URL"
           />
@@ -136,17 +136,16 @@ export default {
 
   data() {
     return {
+      loadingUploadImage: false,
       loading: false,
 
       form: {
         name: '',
         description: '',
         repository: '',
-        website_url: '',
-        image: 'https://www.massbit.io/img/logo.svg',
+        websiteUrl: '',
+        imageUrl: '',
       },
-
-      preview: null,
     };
   },
 
@@ -154,18 +153,34 @@ export default {
     async createIndexer() {
       this.loading = true;
 
-      if (this.preview) {
-        this.form.image =
-          'https://uc7f67781f2c016dd4504188aacb.dl.dropboxusercontent.com/cd/0/inline/BaRWOCbBwGYivXz_oselBQX3grtitXW7l1abGkeIqcznz_0kCSIDAF4LisLKGPKfaLftFEmz_55V_dRIfToQL2l285gvOawDDUPo9M1hfUVPKlTWzsUXb80rPctM1EwxyWJWO16rKiuNnZwXFPn5QzT5/file#';
-      }
-
-      const project = await this.$store.dispatch('indexers/create', this.form);
-      if (project && project.id) {
-        // this.$router.push({ name: 'my-indexer-id', params: { id: project.id } });
-        this.$router.push({ name: 'my-indexer' });
+      try {
+        const project = await this.$store.dispatch('indexers/create', this.form);
+        if (project && project.id) {
+          this.$router.push({ name: 'my-indexer-indexer-id', params: { id: project.id, indexer: 'substrate' } });
+        }
+      } catch (error) {
+        console.log('error :>> ', error);
       }
 
       this.loading = false;
+    },
+
+    async onReadFile(image) {
+      this.loadingUploadImage = true;
+
+      const bodyFormData = new FormData();
+      bodyFormData.append('file', image);
+
+      try {
+        const resFile = await this.$store.dispatch('indexers/uploadImage', bodyFormData);
+        if (resFile && resFile.publicUrl) {
+          this.form.imageUrl = resFile.publicUrl;
+        }
+      } catch (error) {
+        console.log('error :>> ', error);
+      }
+
+      this.loadingUploadImage = false;
     },
   },
 };

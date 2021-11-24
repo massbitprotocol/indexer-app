@@ -4,10 +4,7 @@
       <div class="flex flex-col sm:items-center space-y-7.5 sm:flex-row sm:space-y-0 sm:space-x-7.5">
         <div class="flex-none mx-auto">
           <img
-            :src="
-              project.image ||
-              'https://uc7f67781f2c016dd4504188aacb.dl.dropboxusercontent.com/cd/0/inline/BaRWOCbBwGYivXz_oselBQX3grtitXW7l1abGkeIqcznz_0kCSIDAF4LisLKGPKfaLftFEmz_55V_dRIfToQL2l285gvOawDDUPo9M1hfUVPKlTWzsUXb80rPctM1EwxyWJWO16rKiuNnZwXFPn5QzT5/file#'
-            "
+            :src="project.imageUrl"
             width="240"
             height="240"
             :alt="project.name"
