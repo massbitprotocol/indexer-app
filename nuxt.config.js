@@ -14,7 +14,14 @@ export default {
       { hid: 'description', name: 'description', content: description },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: 'https://unpkg.com/graphiql/graphiql.min.css',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -23,6 +30,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/validate', ssr: true },
+    { src: '~/plugins/vuera', ssr: false },
     '~/plugins/api/subApi.js',
     '~/plugins/api/solApi.js',
     '~/plugins/api/ethApi.js',
