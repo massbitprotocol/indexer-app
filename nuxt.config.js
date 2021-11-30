@@ -111,6 +111,7 @@ export default {
 
   sitemap: {
     gzip: true,
+    hostname: 'https://indexer-app.massbit.io',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
