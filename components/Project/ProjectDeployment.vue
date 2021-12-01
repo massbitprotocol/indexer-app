@@ -118,7 +118,7 @@ export default {
 
           setTimeout(() => {
             this.modalDeployIndexer = false;
-          }, 1500);
+          }, 10000);
         }
       }, 3000);
     },
