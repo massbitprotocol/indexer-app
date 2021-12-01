@@ -20,19 +20,44 @@
         </div>
       </div>
 
-      <embed :src="projectPlaygroundURL" class="-mt-2 w-full h-[48rem] rounded-lg" />
+      <client-only placeholder="Loading...">
+        <GraphiQL :fetcher="fetcher" class="-mt-2 w-full h-[48rem] rounded-lg" />
+      </client-only>
     </div>
   </section>
 </template>
 
 <script>
+import GraphiQL from 'graphiql';
+
 export default {
   name: 'ProjectPlayground',
 
-  data() {
-    return {
-      projectPlaygroundURL: 'http://localhost:3002',
-    };
+  components: {
+    GraphiQL,
+  },
+
+  created() {
+    console.log('this.env :>> ', this);
+  },
+
+  computed: {
+    projectID() {
+      console.log('this.$route.params :>> ', this.$route.params);
+      return this.$route.params.id;
+    },
+
+    queryURL() {
+      return this.$config.query.subUrl || '';
+    },
+  },
+
+  methods: {
+    async fetcher(graphQLParams) {
+      const data = await this.$axios.$post(`${this.queryURL}/indexers/${this.projectID}/graphql`, graphQLParams);
+
+      return { data };
+    },
   },
 };
 </script>

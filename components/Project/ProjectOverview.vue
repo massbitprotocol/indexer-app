@@ -35,7 +35,8 @@
         </div>
 
         <div class="w-full md:w-5/12 space-y-5">
-          <div>
+          <!-- hidden -->
+          <div class="hidden">
             <div class="text-neutral-grey text-sm">Network</div>
             <div class="capitalize mt-1 font-medium text-neutral-mid text-sm">
               {{ project.network || 'Bifrost Asgard CC4' }}
@@ -52,7 +53,8 @@
             </div>
           </div>
           <div class="space-y-3">
-            <div class="font-medium text-neutral-mid text-sm flex items-center space-x-1.5">
+            <!-- hidden -->
+            <div class="hidden font-medium text-neutral-mid text-sm flex items-center space-x-1.5">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill-rule="evenodd"
@@ -70,7 +72,7 @@
                   fill="#213960"
                 />
               </svg>
-              <a href="#" target="_blank" class="hover:underline">https://github.com/bifrost-finance/bifrost-subql</a>
+              <a :href="project.repository" target="_blank" class="hover:underline">{{ project.repository || '' }}</a>
             </div>
           </div>
         </div>
@@ -88,6 +90,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+  },
+
+  created() {
+    console.log('this.project :>> ', this.project);
   },
 };
 </script>

@@ -56,6 +56,9 @@ export default {
     axios: {
       baseURL: process.env.API_BASE_URL,
     },
+    query: {
+      subUrl: process.env.API_QUERY_SUB_INDEX_URL,
+    },
   },
 
   privateRuntimeConfig: {
@@ -94,8 +97,8 @@ export default {
   auth: {
     strategies: {
       github: {
-        clientId: '0d3adeddeae9338b7e1c',
-        clientSecret: 'a57c59545665fa791a9d3ab143037cfba29f062e',
+        clientId: '7663f4291d46c4ef8518',
+        clientSecret: '91e6f167e2e0de7ae21d846823fec4aa1beb85a0',
       },
     },
   },
