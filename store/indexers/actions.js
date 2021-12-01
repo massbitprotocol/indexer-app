@@ -126,7 +126,6 @@ export default {
         // Set compile function
         parseData = (indexer) => ({
           ...indexer,
-          deployed: true,
           indexer: 'substrate',
         });
 

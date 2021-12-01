@@ -91,9 +91,5 @@ export default {
       default: () => ({}),
     },
   },
-
-  created() {
-    console.log('this.project :>> ', this.project);
-  },
 };
 </script>

@@ -4,7 +4,7 @@
       <div class="flex flex-col sm:items-center space-y-7.5 sm:flex-row sm:space-y-0 sm:space-x-7.5">
         <div class="flex-none mx-auto">
           <img
-            :src="project.imageUrl"
+            :src="project.imageUrl || 'https://storage.googleapis.com/massbit/05b23be7-04ae-450c-a955-ad66e33f891f.png'"
             width="240"
             height="240"
             :alt="project.name"
@@ -28,7 +28,7 @@
             <div class="flex items-center space-x-5">
               <div class="text-3xl sm:text-5xl text-neutral-darkest font-bold">{{ project.name }}</div>
               <div
-                v-if="project.deployed"
+                v-if="project.status === 'DEPLOYED'"
                 class="
                   h-[38px]
                   flex
@@ -125,6 +125,10 @@ export default {
       type: Array,
       default: () => [],
     },
+  },
+
+  created() {
+    console.log('this.project :>> ', this.project);
   },
 
   methods: {

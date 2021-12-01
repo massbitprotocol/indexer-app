@@ -6,7 +6,7 @@
     <div class="aspect-w-1 aspect-h-1">
       <img
         loading="lazy"
-        :src="project.imageUrl"
+        :src="project.imageUrl || 'https://storage.googleapis.com/massbit/05b23be7-04ae-450c-a955-ad66e33f891f.png'"
         width="234"
         height="234"
         alt=""

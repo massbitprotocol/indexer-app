@@ -37,13 +37,8 @@ export default {
     GraphiQL,
   },
 
-  created() {
-    console.log('this.env :>> ', this);
-  },
-
   computed: {
     projectID() {
-      console.log('this.$route.params :>> ', this.$route.params);
       return this.$route.params.id;
     },
 

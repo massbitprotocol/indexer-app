@@ -19,13 +19,11 @@
       <div class="text-body-1 font-semibold">Deploy</div>
     </BaseButton>
 
-    <TheModal :open.sync="modalDeployIndexer" :backdrop="true">
+    <TheModal :open.sync="modalDeployIndexer">
       <div class="max-w-[570px] w-full bg-white p-5 rounded-lg z-10 text-center overflow-hidden">
         <div class="text-heading-2 font-bold text-neutral-darkest">Proccessing...</div>
 
-        <div class="text-body-1 text-neutral-grey font-semibold mt-2">
-          VER: d087b3db1d9af7b9892866a55087d986e26dfe2f
-        </div>
+        <div class="text-body-1 text-neutral-grey font-semibold mt-2">VER: {{ id }}</div>
 
         <div class="mt-7.5 flex items-center justify-center">
           <img src="~/assets/svg/process-deploy-app.svg" alt="" />
@@ -85,27 +83,48 @@ export default {
   name: 'ProjectDeployment',
 
   props: {
-    project: {
-      type: Object,
-      default: () => ({}),
-    },
+    // project: {
+    //   type: Object,
+    //   default: () => ({}),
+    // },
   },
 
   data() {
     return {
       modalDeployIndexer: false,
       status: null,
+      polling: null,
     };
+  },
+
+  computed: {
+    id() {
+      return this.$route.params.id;
+    },
+
+    indexerName() {
+      return 'substrate';
+    },
   },
 
   methods: {
     showModalDeployIndexer() {
       this.modalDeployIndexer = true;
+      this.polling = setInterval(async () => {
+        const data = await this.fetch();
+        if (data.status === 'DEPLOYED') {
+          this.status = 'success';
+          clearInterval(this.polling);
 
-      setTimeout(() => {
-        console.log('project :>> ', this.project);
-        this.status = 'success';
+          setTimeout(() => {
+            this.modalDeployIndexer = false;
+          }, 1500);
+        }
       }, 3000);
+    },
+
+    async fetch() {
+      return await this.$store.dispatch('indexers/fetchByID', { id: this.id, indexer: this.indexerName });
     },
   },
 };
