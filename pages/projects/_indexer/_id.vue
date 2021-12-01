@@ -13,7 +13,7 @@
       <!-- <ProjectIndexerTable class="py-7.5" /> -->
       <!-- end indexer table -->
 
-      <ProjectPlayground v-if="indexer.deployed" class="py-7.5" />
+      <ProjectPlayground v-if="indexer.status === 'DEPLOYED'" class="py-7.5" />
       <!-- end playground -->
 
       <ProjectDeployment v-else :project.sync="indexer" />
