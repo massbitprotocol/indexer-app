@@ -362,7 +362,7 @@
 .graphiql-container .toolbar-select-options > li:hover,
 .graphiql-container .history-contents > li:hover,
 .graphiql-container .history-contents > li:active {
-  background: #e10098;
+  background: #2c3acf;
   color: #fff;
 }
 
