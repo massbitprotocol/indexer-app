@@ -24,6 +24,8 @@ export default {
   plugins: [
     { src: '~/plugins/validate', ssr: true },
     { src: '~/plugins/vuera', ssr: false },
+    { src: '~/plugins/notifications/ssr', ssr: true },
+    { src: '~/plugins/notifications/client', ssr: false },
     '~/plugins/api/subApi.js',
     '~/plugins/api/solApi.js',
     '~/plugins/api/ethApi.js',

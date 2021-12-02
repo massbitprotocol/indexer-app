@@ -156,9 +156,13 @@ export default {
       try {
         const project = await this.$store.dispatch('indexers/create', this.form);
         if (project && project.id) {
+          this.$notify({ type: 'success', text: 'Indexer created!' });
+
           this.$router.push({ name: 'my-indexer-indexer-id', params: { id: project.id, indexer: 'substrate' } });
         }
       } catch (error) {
+        this.$notify({ type: 'error', text: error.message || 'An unknown error occurred, please try again' });
+
         console.log('error :>> ', error);
       }
 

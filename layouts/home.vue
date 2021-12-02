@@ -7,11 +7,13 @@
     </main>
 
     <TheFooter />
+
+    <BaseNotification />
   </div>
 </template>
 
 <script>
 export default {
-  name: "LayoutHome",
+  name: 'LayoutHome',
 };
 </script>

@@ -7,6 +7,8 @@
     </main>
 
     <TheFooter />
+
+    <BaseNotification />
   </div>
 </template>
 
