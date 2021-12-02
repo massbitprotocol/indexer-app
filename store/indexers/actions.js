@@ -145,10 +145,13 @@ export default {
     return [];
   },
 
-  async create({ commit }, form) {
-    const data = await this.$subApi.$post('indexers', { ...form }, { progress: false });
+  async create({ commit }, { form, indexer }) {
+    let path = 'indexers';
+    if (indexer === 'solana') {
+      path = 'indexers/gitdeploy';
+    }
 
-    return data;
+    return await this.$subApi.$post(path, { ...form }, { progress: false });
   },
 
   async uploadImage({ commit }, form) {

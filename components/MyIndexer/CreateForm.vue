@@ -66,6 +66,16 @@
         </div>
       </ValidationProvider>
 
+      <div class="w-full mt-5">
+        <div>
+          <label class="block text-body-1 text-neutral-darkset font-semibold tracking-wide mb-2" for="grid-name">
+            Indexer
+          </label>
+
+          <BaseRadioButtonGroup :source="indexers" :current-key.sync="currentIndexer" />
+        </div>
+      </div>
+
       <ValidationProvider v-slot="{ errors }" rules="required" name="repository URL" tag="div" class="w-full mt-5">
         <div>
           <label class="block text-body-1 text-neutral-darkset font-semibold tracking-wide mb-2" for="grid-repo-url">
@@ -131,6 +141,17 @@
 </template>
 
 <script>
+const indexers = [
+  {
+    name: 'Substrate',
+    key: 'substrate',
+  },
+  {
+    name: 'Solana',
+    key: 'solana',
+  },
+];
+
 export default {
   name: 'MyIndexerCreateForm',
 
@@ -138,6 +159,8 @@ export default {
     return {
       loadingUploadImage: false,
       loading: false,
+      currentIndexer: 'solana',
+      indexers,
 
       form: {
         name: '',
@@ -154,16 +177,25 @@ export default {
       this.loading = true;
 
       try {
-        const project = await this.$store.dispatch('indexers/create', this.form);
+        const project = await this.$store.dispatch('indexers/create', {
+          form: this.form,
+          indexer: this.currentIndexer,
+        });
         if (project && project.id) {
           this.$notify({ type: 'success', text: 'Indexer created!' });
 
-          this.$router.push({ name: 'my-indexer-indexer-id', params: { id: project.id, indexer: 'substrate' } });
+          this.$router.push({
+            name: 'my-indexer-indexer-id',
+            params: { id: project.id, indexer: this.currentIndexer },
+          });
         }
       } catch (error) {
-        this.$notify({ type: 'error', text: error.message || 'An unknown error occurred, please try again' });
-
-        console.log('error :>> ', error);
+        if (error.response && error.response.data) {
+          const { message } = error.response.data;
+          this.$notify({ type: 'error', text: message || 'An unknown error occurred, please try again' });
+        } else {
+          this.$notify({ type: 'error', text: error.message || 'An unknown error occurred, please try again' });
+        }
       }
 
       this.loading = false;
