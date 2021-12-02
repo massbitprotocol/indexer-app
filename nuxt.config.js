@@ -90,8 +90,8 @@ export default {
   auth: {
     strategies: {
       github: {
-        clientId: '7663f4291d46c4ef8518',
-        clientSecret: '91e6f167e2e0de7ae21d846823fec4aa1beb85a0',
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
       },
     },
   },
