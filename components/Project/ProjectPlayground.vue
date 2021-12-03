@@ -21,14 +21,14 @@
       </div>
 
       <client-only placeholder="Loading...">
-        <GraphiQL :fetcher="fetcher" class="-mt-2 w-full h-[48rem] rounded-lg" />
+        <GraphiQL :fetcher="fetcher" class="-mt-2 w-full h-[48rem] rounded-lg"> </GraphiQL>
       </client-only>
     </div>
   </section>
 </template>
 
 <script>
-import GraphiQL from 'graphiql';
+import { GraphiQL } from 'graphiql';
 
 export default {
   name: 'ProjectPlayground',
@@ -49,9 +49,15 @@ export default {
 
   methods: {
     async fetcher(graphQLParams) {
-      const data = await this.$axios.$post(`${this.queryURL}/indexers/${this.projectID}/graphql`, graphQLParams);
+      try {
+        const data = await this.$axios.$post(`${this.queryURL}/indexers/${this.projectID}/graphql`, graphQLParams);
 
-      return { data };
+        return { data };
+      } catch (error) {
+        console.log('error :>> ', error);
+      }
+
+      return null;
     },
   },
 };
