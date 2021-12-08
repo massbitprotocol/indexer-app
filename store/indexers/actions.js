@@ -158,4 +158,12 @@ export default {
   async uploadImage({ commit }, form) {
     return await this.$axios.$post('upload-file', form, { progress: false });
   },
+
+  async deploy({ commit }, { id, indexer }) {
+    if (indexer === 'substrate') {
+      return await this.$subApi.$post(`indexers/${id}/deploy`, {}, { progress: false });
+    }
+
+    return { success: true };
+  },
 };

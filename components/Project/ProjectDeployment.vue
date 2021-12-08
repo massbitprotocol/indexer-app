@@ -108,23 +108,42 @@ export default {
   },
 
   methods: {
-    showModalDeployIndexer() {
+    async showModalDeployIndexer() {
       this.modalDeployIndexer = true;
-      this.polling = setInterval(async () => {
-        const data = await this.fetch();
-        if (data.status === 'DEPLOYED') {
-          this.status = 'success';
-          clearInterval(this.polling);
+      try {
+        await this.deploy();
 
-          setTimeout(() => {
-            this.modalDeployIndexer = false;
-          }, 10000);
+        this.polling = setInterval(async () => {
+          const data = await this.fetch();
+          if (data.status === 'DEPLOYED') {
+            this.status = 'success';
+            clearInterval(this.polling);
+
+            setTimeout(() => {
+              this.modalDeployIndexer = false;
+            }, 10000);
+          }
+        }, 3000);
+      } catch (error) {
+        console.log('error :>> ', error);
+
+        if (error.response && error.response.data) {
+          const { message } = error.response.data;
+          this.$notify({ type: 'error', text: message || 'An unknown error occurred, please try again' });
+        } else {
+          this.$notify({ type: 'error', text: error.message || 'An unknown error occurred, please try again' });
         }
-      }, 3000);
+
+        this.modalDeployIndexer = false;
+      }
     },
 
     async fetch() {
       return await this.$store.dispatch('indexers/fetchByID', { id: this.id, indexer: this.indexerName });
+    },
+
+    async deploy() {
+      return await this.$store.dispatch('indexers/deploy', { id: this.id, indexer: this.indexerName });
     },
   },
 };
