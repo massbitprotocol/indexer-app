@@ -29,6 +29,7 @@ export default {
     '~/plugins/api/subApi.js',
     '~/plugins/api/solApi.js',
     '~/plugins/api/ethApi.js',
+    '~/plugins/api/userApi.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,6 +46,8 @@ export default {
     solUrl: process.env.API_SOL_INDEX_URL,
     // Ethereum indexer
     ethUrl: process.env.API_ETH_INDEX_URL,
+    // User management
+    userApi: process.env.API_USER_MANAGAMENT,
   },
 
   publicRuntimeConfig: {
@@ -91,9 +94,9 @@ export default {
 
   auth: {
     strategies: {
-      github: {
-        clientId: process.env.GITHUB_CLIENT_ID,
-        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      oauth2Github: {
+        scheme: '~/schemes/github',
+        endpoint: process.env.API_USER_MANAGAMENT,
       },
     },
   },
