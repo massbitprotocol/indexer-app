@@ -17,6 +17,8 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  ssr: false,
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/css/fonts.css', '~/assets/css/graphiql.css'],
 
@@ -53,6 +55,7 @@ export default {
     },
     query: {
       subUrl: process.env.API_QUERY_SUB_INDEX_URL,
+      solUrl: process.env.API_QUERY_SOL_INDEX_URL,
     },
   },
 
@@ -109,7 +112,7 @@ export default {
 
   sitemap: {
     gzip: true,
-    hostname: 'https://indexer-app.massbit.io',
+    hostname: 'https://indexer-app-staging.massbit.io',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

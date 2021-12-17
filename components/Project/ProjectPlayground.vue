@@ -43,7 +43,14 @@ export default {
     },
 
     queryURL() {
-      return this.$config.query.subUrl || '';
+      if (this.$route.params) {
+        // Solana
+        if (this.$route.params.indexer === 'solana') return this.$config.query.solUrl;
+        // Substrate
+        if (this.$route.params.indexer === 'substrate') return this.$config.query.subUrl;
+      }
+
+      return '/';
     },
   },
 
