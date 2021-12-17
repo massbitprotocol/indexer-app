@@ -160,7 +160,9 @@ export default {
   },
 
   async deploy({ commit }, { id, indexer }) {
+    // Substrate
     if (indexer === 'substrate') return await this.$subApi.$post(`indexers/${id}/deploy`, {}, { progress: false });
+    // Solana
     if (indexer === 'solana')
       return await this.$solApi.$post(
         `indexers/gitdeploy`,
@@ -170,6 +172,6 @@ export default {
         { progress: false },
       );
 
-    return { success: true };
+    return { success: false };
   },
 };

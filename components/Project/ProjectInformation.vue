@@ -28,36 +28,14 @@
             <div class="flex items-center space-x-5">
               <div class="text-3xl sm:text-5xl text-neutral-darkest font-bold">{{ project.name }}</div>
               <div
-                v-if="project.status === 'DEPLOYED'"
-                class="
-                  h-[38px]
-                  flex
-                  items-center
-                  justify-center
-                  px-3
-                  bg-accent-green
-                  text-white
-                  uppercase
-                  rounded
-                  font-medium
-                "
+                v-if="`${project.status}`.toUpperCase() === 'DEPLOYED'"
+                class="h-[38px] flex items-center justify-center px-3 bg-accent-green text-white uppercase rounded font-medium"
               >
                 Deployed
               </div>
               <div
                 v-else
-                class="
-                  h-[38px]
-                  flex
-                  items-center
-                  justify-center
-                  px-3
-                  bg-accent-red
-                  text-white
-                  uppercase
-                  rounded
-                  font-medium
-                "
+                class="h-[38px] flex items-center justify-center px-3 bg-accent-red text-white uppercase rounded font-medium"
               >
                 Draft
               </div>
@@ -125,10 +103,6 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-
-  created() {
-    console.log('this.project :>> ', this.project);
   },
 
   methods: {

@@ -115,7 +115,7 @@ export default {
 
         this.polling = setInterval(async () => {
           const data = await this.fetch();
-          if (data.status === 'DEPLOYED') {
+          if (`${data.status}`.toUpperCase() === 'DEPLOYED') {
             this.status = 'success';
             clearInterval(this.polling);
 
