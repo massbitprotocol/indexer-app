@@ -161,7 +161,7 @@ export default {
 
   async deploy({ commit }, { id, indexer }) {
     if (indexer === 'substrate') return await this.$subApi.$post(`indexers/${id}/deploy`, {}, { progress: false });
-    if (indexer === 'solana') return await this.$subApi.$post(`indexers/${id}/gitdeploy`, {}, { progress: false });
+    if (indexer === 'solana') return await this.$solApi.$post(`indexers/${id}/gitdeploy`, {}, { progress: false });
 
     return { success: true };
   },

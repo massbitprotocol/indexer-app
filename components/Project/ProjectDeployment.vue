@@ -103,7 +103,7 @@ export default {
     },
 
     indexerName() {
-      return 'substrate';
+      return this.$route.params.indexer || null;
     },
   },
 
