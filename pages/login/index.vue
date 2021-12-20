@@ -141,11 +141,9 @@ export default {
 
       const data = await this.$userApi.$post('/auth/token');
       if (data && data.accessToken) {
-        this.$auth.strategy.token.set(data.accessToken);
+        this.$auth.setUserToken(data.accessToken, true);
 
-        console.log('this.$auth :>> ', this.$auth);
-        this.$auth.redirect('home');
-        // this.$router.push('/');
+        this.$auth.redirect('home', '/');
       }
     }
   },
