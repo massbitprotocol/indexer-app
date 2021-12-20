@@ -140,16 +140,12 @@ export default {
       this.loading = true;
 
       const data = await this.$userApi.$post('/auth/token');
-      console.log('data :>> ', data);
       if (data && data.accessToken) {
-        console.log('data.accessToken :>> ', data.accessToken);
         this.$auth.strategy.token.set(data.accessToken);
 
-        console.log('this.$auth.strategy.token.get() :>> ', this.$auth.strategy.token.get());
-        console.log('status :>> ', this.$auth.strategy.token.status());
-
-        console.log('this.$auth.loggedIn :>> ', this.$auth.loggedIn);
-        this.$router.push('/');
+        console.log('this.$auth :>> ', this.$auth);
+        this.$auth.redirect('home');
+        // this.$router.push('/');
       }
     }
   },
