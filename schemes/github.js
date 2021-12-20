@@ -9,8 +9,7 @@ export default class GithubScheme extends LocalScheme {
   }
 
   login(payload, { reset = true } = {}) {
-    console.log(' window.location :>> ', window.location.origin);
-    window.location.href = `${this.options.endpoint}/auth/github/?redirectTo=${encodeURI(
+    window.location.href = `${this.options.endpoints.login}/auth/github/?redirectTo=${encodeURI(
       `${window.location.origin}/login?byToken=true`,
     )}`;
   }

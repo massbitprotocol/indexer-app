@@ -17,6 +17,8 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  ssr: false,
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/css/fonts.css', '~/assets/css/graphiql.css'],
 
@@ -93,10 +95,20 @@ export default {
   ],
 
   auth: {
+    plugins: ['~/plugins/auth'],
     strategies: {
       oauth2Github: {
         scheme: '~/schemes/github',
-        endpoint: process.env.API_USER_MANAGAMENT,
+        endpoints: {
+          login: process.env.API_USER_MANAGAMENT,
+        },
+        token: {
+          global: true,
+          prefix: '',
+          type: 'Bearer',
+          name: 'Authorization',
+          required: true,
+        },
       },
     },
   },
