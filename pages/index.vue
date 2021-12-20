@@ -8,7 +8,12 @@
 
 <script>
 export default {
-  name: "HomePage",
-  layout: "home",
+  name: 'HomePage',
+  layout: 'home',
+
+  created() {
+    console.log('this.$auth.loggedIn :>> ', this.$auth.loggedIn);
+    console.log('this.$auth.strategy.token.get() :>> ', this.$auth.strategy.token.get());
+  },
 };
 </script>
