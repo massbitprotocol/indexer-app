@@ -97,6 +97,12 @@ export default {
 
   auth: {
     plugins: ['~/plugins/auth'],
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/',
+    },
     strategies: {
       oauth2Github: {
         scheme: '~/schemes/github',
