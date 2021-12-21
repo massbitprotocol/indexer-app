@@ -108,6 +108,7 @@ export default {
         scheme: '~/schemes/github',
         endpoints: {
           login: process.env.API_USER_MANAGAMENT,
+          logout: `${process.env.API_USER_MANAGAMENT}/auth/logout`,
         },
         token: {
           global: true,
