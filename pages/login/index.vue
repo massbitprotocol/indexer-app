@@ -134,6 +134,20 @@ export default {
     };
   },
 
+  async created() {
+    const loginByToken = this.$route.query.byToken;
+    if (loginByToken) {
+      this.loading = true;
+
+      const data = await this.$userApi.$post('/auth/token');
+      if (data && data.accessToken) {
+        this.$auth.setUserToken(data.accessToken, true);
+
+        this.$auth.redirect('home', '/');
+      }
+    }
+  },
+
   methods: {
     userLogin() {
       this.loading = true;
@@ -144,7 +158,7 @@ export default {
     },
 
     loginWithGithub() {
-      this.$auth.loginWith('github');
+      this.$auth.loginWith('oauth2Github');
     },
   },
 };
