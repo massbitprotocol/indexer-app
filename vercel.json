@@ -7,7 +7,7 @@
       "config": {
         "internalServer": true,
         "serverFiles": [
-          "modules/**",
+          "schemes/**",
           "./.nuxt/dist/sitemap-routes.json"
         ]
       }
