@@ -42,12 +42,16 @@ export default {
       return this.$route.params.id;
     },
 
+    indexer() {
+      return this.$route.params.indexer || 'substrate';
+    },
+
     queryURL() {
       if (this.$route.params) {
         // Solana
-        if (this.$route.params.indexer === 'solana') return this.$config.query.solUrl;
+        if (this.indexer === 'solana') return this.$config.query.solUrl;
         // Substrate
-        if (this.$route.params.indexer === 'substrate') return this.$config.query.subUrl;
+        if (this.indexer === 'substrate') return this.$config.query.subUrl;
       }
 
       return '/';
@@ -58,6 +62,7 @@ export default {
     async fetcher(graphQLParams) {
       try {
         const data = await this.$axios.$post(`${this.queryURL}/indexers/${this.projectID}/graphql`, graphQLParams);
+        if (this.indexer === 'solana') return data;
 
         return { data };
       } catch (error) {
