@@ -2,17 +2,17 @@
   <div>
     <nav class="flex items-center font-medium space-x-7.5">
       <NuxtLink
-        class="uppercase text-neutral-darker font-semibold"
+        class="text-body-1 uppercase text-neutral-darker font-medium"
         exact-active-class="!text-primary"
         ex
         :to="{ name: 'index' }"
       >
-        Smart Contract Indexer
+        Community Indexer
       </NuxtLink>
 
       <NuxtLink
-        class="uppercase text-neutral-darker font-semibold"
-        exact-active-class="!text-primary"
+        class="text-body-1 uppercase text-neutral-darker font-medium"
+        exact-active-class="!text-primary !font-bold"
         :to="{ name: 'my-indexer' }"
       >
         My Indexer

@@ -2,10 +2,10 @@
   <header>
     <div class="container mx-auto">
       <div class="flex items-center justify-between py-5">
-        <div class="flex items-center">
+        <div class="inline-flex items-center">
           <TheLogoDark class="mr-5 lg:mr-10" />
 
-          <TheNavigator class="hidden lg:block" />
+          <TheNavigator class="relative top-0.5 hidden lg:block" />
         </div>
 
         <TheAccountDropdown v-if="$auth.loggedIn" class="hidden lg:block"> Account </TheAccountDropdown>

@@ -2,7 +2,7 @@
   <div class="space-y-20 mb-20">
     <HomeHero />
 
-    <HomeProjects />
+    <HomeProjects class="pb-80" />
   </div>
 </template>
 
