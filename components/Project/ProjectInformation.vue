@@ -29,7 +29,7 @@
               <div class="text-3xl sm:text-5xl text-neutral-darkest font-bold">{{ project.name }}</div>
               <div
                 :class="{
-                  'h-[38px] flex items-center justify-center px-3 text-white uppercase rounded font-medium': true,
+                  'h-[38px] flex items-center justify-center px-3 text-white uppercase rounded': true,
                   'bg-accent-green': `${project.status}`.toUpperCase() === 'DEPLOYED',
                   'bg-accent-red': `${project.status}`.toUpperCase() === 'DRAFT',
                   'bg-accent-yellow': `${project.status}`.toUpperCase() === 'DEPLOYING',

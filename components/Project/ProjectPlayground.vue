@@ -2,7 +2,7 @@
   <section>
     <div>
       <div class="flex flex-col justify-between mb-5 space-y-1.5 sm:space-y-0 sm:flex-row sm:items-center">
-        <h2 class="text-neutral-darker text-lg font-bold uppercase">Playground</h2>
+        <div class="text-neutral-darkest text-title-2 font-bold uppercase">Playground</div>
 
         <div class="grid grid-flow-col sm:gap-10">
           <div class="flex items-center space-x-3">

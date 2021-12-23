@@ -67,7 +67,7 @@
                       <div class="flex items-center justify-between">
                         <div
                           :class="{
-                            'w-[84px] flex items-center justify-center px-2 py-1 uppercase text-caption font-semibold text-white rounded': true,
+                            'w-[84px] flex items-center justify-center px-2 py-1 uppercase text-caption font-normal text-white rounded': true,
                             'bg-accent-green': `${project.status}`.toUpperCase() === 'DEPLOYED',
                             'bg-accent-red': `${project.status}`.toUpperCase() === 'DRAFT',
                             'bg-accent-yellow': `${project.status}`.toUpperCase() === 'DEPLOYING',
@@ -76,7 +76,7 @@
                           {{ project.status }}
                         </div>
 
-                        <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
+                        <div class="text-caption text-neutral-grey font-normal">4 day ago</div>
                       </div>
                     </template>
                   </ProjectCard>
@@ -124,7 +124,7 @@
                       <div class="flex items-center justify-between">
                         <div
                           :class="{
-                            'w-[84px] flex items-center justify-center px-2 py-1 uppercase text-caption font-semibold text-white rounded': true,
+                            'w-[84px] flex items-center justify-center px-2 py-1 uppercase text-caption font-normal text-white rounded': true,
                             'bg-accent-green': `${project.status}`.toUpperCase() === 'DEPLOYED',
                             'bg-accent-red': `${project.status}`.toUpperCase() === 'DRAFT',
                             'bg-accent-yellow': `${project.status}`.toUpperCase() === 'DEPLOYING',
@@ -133,7 +133,7 @@
                           {{ project.status }}
                         </div>
 
-                        <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
+                        <div class="text-caption text-neutral-grey font-normal">4 day ago</div>
                       </div>
                     </template>
                   </ProjectCard>

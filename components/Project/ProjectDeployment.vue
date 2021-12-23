@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="text-heading-2 text-neutral-darkest font-bold">Deployment Details</div>
+    <div class="text-neutral-darkest text-title-2 font-bold uppercase">Deployment Details</div>
 
-    <div class="text-body-2 text-neutral-grey font-semibold mt-1.5">
+    <div class="text-body-2 text-neutral-grey font-medium mt-4">
       You must deploy your Project before MassBit is able to index your data
     </div>
 
@@ -16,14 +16,14 @@
         />
       </svg>
 
-      <div class="text-body-1 font-semibold">Deploy</div>
+      <div class="text-body-1 font-medium">Deploy</div>
     </BaseButton>
 
     <TheModal :open.sync="modalDeployIndexer">
       <div class="max-w-[570px] w-full bg-white p-5 rounded-lg z-10 text-center overflow-hidden">
         <div class="text-heading-2 font-bold text-neutral-darkest">Proccessing...</div>
 
-        <div class="text-body-1 text-neutral-grey font-semibold mt-2">VER: {{ id }}</div>
+        <div class="text-body-1 text-neutral-grey mt-2">{{ id }}</div>
 
         <div class="mt-7.5 flex items-center justify-center">
           <img src="~/assets/svg/process-deploy-app.svg" alt="" />

@@ -1,23 +1,15 @@
 <template>
-  <div class="pb-14">
+  <div class="pb-80">
     <template v-if="indexer">
       <TheBreadcrumb :slug="indexer.name" :main-router="{ name: 'My Indexer', to: { name: 'my-indexer' } }" />
-      <!-- end breadcrumb -->
 
-      <ProjectInformation class="py-7.5" :project="indexer" />
-      <!-- end information -->
+      <ProjectInformation class="py-15" :project="indexer" />
 
-      <ProjectOverview class="py-7.5" :project="indexer" />
-      <!-- end overview -->
-
-      <!-- <ProjectIndexerTable class="py-7.5" /> -->
-      <!-- end indexer table -->
+      <ProjectOverview class="py-15" :project="indexer" />
 
       <ProjectPlayground v-if="indexer.status && indexer.status.toUpperCase() === 'DEPLOYED'" class="py-7.5" />
-      <!-- end playground -->
 
       <ProjectDeployment v-else :project.sync="indexer" />
-      <!-- end deployment -->
     </template>
   </div>
 </template>
