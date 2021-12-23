@@ -67,6 +67,7 @@ export default {
       baseURL: process.env.API_BASE_URL,
     },
   },
+
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
@@ -93,6 +94,8 @@ export default {
     '@nuxtjs/sitemap',
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
+    // https://github.com/LinusBorg/portal-vue
+    'portal-vue/nuxt',
   ],
 
   auth: {

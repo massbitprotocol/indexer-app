@@ -4,7 +4,7 @@
       <ol
         vocab="https://schema.org/"
         typeof="BreadcrumbList"
-        class="flex items-center space-x-2 text-sm text-neutral-grey"
+        class="flex items-center space-x-2 text-body-1 text-neutral-normal"
       >
         <li property="itemListElement" typeof="ListItem">
           <NuxtLink :to="mainRouter.to" class="hover:underline" property="item" typeof="WebPage">
@@ -12,8 +12,10 @@
           </NuxtLink>
           <meta property="position" content="1" />
         </li>
-        <li>/</li>
-        <li property="itemListElement" typeof="ListItem" class="text-neutral-darkest font-semibold">
+
+        <li class="text-neutral-darkest font-semibold">/</li>
+
+        <li property="itemListElement" typeof="ListItem" class="text-neutral-darkest font-medium">
           <span property="name">{{ slug }}</span>
           <meta property="position" content="2" />
         </li>
