@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="flex border-b border-primary-background gap-5">
+    <ul class="flex border-b border-primary-background gap-7.5">
       <template v-for="header in headers">
         <li :key="header.key" class="relative" @click="_currentTab = header.key">
           <a

@@ -2,19 +2,12 @@
   <div>
     <div class="flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0 sm:space-x-4">
       <div class="flex-full md:flex-1">
-        <div class="flex rounded-full">
+        <div class="flex rounded-lg">
           <select
             v-model="_filters.network"
             @change="onSelectNetWork"
             role="button"
-            class="
-              flex
-              rounded-l-full
-              border border-r-0 border-neutral-lighter
-              text-neutral-darker text-body-2
-              font-semibold
-              px-7.5
-            "
+            class="flex rounded-l-lg border border-r-0 border-primary-background text-neutral-darker text-body-2 px-7.5 focus:ring-0 focus:border-primary-background"
           >
             <option
               class="py-3"
@@ -32,19 +25,7 @@
               v-model="filter"
               type="text"
               name="company-website"
-              class="
-                flex-1
-                block
-                w-full
-                rounded-r-full
-                border-neutral-lighter
-                placeholder-neutral-grey
-                pl-5
-                pr-12
-                py-2
-                sm:text-sm sm:py-2.5
-                focus:ring-primary focus:border-primary
-              "
+              class="flex-1 block w-full rounded-r-lg border-primary-background placeholder-neutral-grey pl-5 pr-12 py-2 sm:text-sm sm:py-2.5 focus:ring-0 focus:border-primary-background"
               placeholder="Search"
               @input="filterProjects"
             />
@@ -78,19 +59,7 @@
       <div class="flex-1 flex justify-end">
         <div
           role="button"
-          class="
-            w-full
-            sm:w-52
-            border border-neutral-lighter
-            rounded-full
-            text-body-2 text-neutral-darker
-            font-semibold
-            flex
-            items-center
-            justify-between
-            py-2.5
-            px-5
-          "
+          class="w-full sm:w-52 border border-primary-background rounded-lg text-body-2 text-neutral-darker flex items-center justify-between py-2.5 px-5"
         >
           <div>Sort by: Alphabetical</div>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
