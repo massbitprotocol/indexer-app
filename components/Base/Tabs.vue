@@ -1,22 +1,25 @@
 <template>
   <div>
-    <ul class="flex">
+    <ul class="flex border-b border-primary-background gap-5">
       <template v-for="header in headers">
-        <li :key="header.key" class="mr-1" @click="_currentTab = header.key">
+        <li :key="header.key" class="relative" @click="_currentTab = header.key">
           <a
             :class="{
-              'bg-white text-primary font-bold border-b-2 border-primary': _currentTab === header.key,
-              'bg-transparent text-neutral-grey font-semibold': !(_currentTab === header.key),
-              'text-body-1 inline-block rounded-t-xl py-3 mr-5 hover:text-blue-500 focus:outline-none uppercase cursor-pointer': true,
+              'relative flex bg-white text-primary font-bold after:absolute after:w-full after:h-[2px] after:bottom-0 after:bg-primary':
+                _currentTab === header.key,
+              'bg-transparent text-neutral-normal font-medium': !(_currentTab === header.key),
+              'text-body-1 inline-block py-3 hover:text-primary/80 hover:border-primary/80 focus:outline-none uppercase cursor-pointer': true,
             }"
           >
             {{ header.name }}
           </a>
+
+          <!-- <div class="absolute w-full h-[2px] bg-primary hover:border-primary/80"></div> -->
         </li>
       </template>
     </ul>
 
-    <div class="w-full mt-7.5 bg-white rounded-xl rounded-t-none">
+    <div class="w-full mt-7.5 bg-white">
       <template v-for="header in headers">
         <div v-show="header.key === _currentTab" :key="header.key">
           <slot :name="header.key" />
