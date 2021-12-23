@@ -13,7 +13,7 @@
         </div>
 
         <div class="flex-grow">
-          <div class="flex items-center space-x-1.5">
+          <!-- <div class="flex items-center space-x-1.5">
             <img
               src="https://i.pravatar.cc/24?u=6"
               width="24"
@@ -22,22 +22,20 @@
               alt=""
             />
             <div class="text-neutral-mid">{{ project.slug }}</div>
-          </div>
+          </div> -->
 
           <div class="w-full mt-3 flex items-center justify-between">
             <div class="flex items-center space-x-5">
               <div class="text-3xl sm:text-5xl text-neutral-darkest font-bold">{{ project.name }}</div>
               <div
-                v-if="`${project.status}`.toUpperCase() === 'DEPLOYED'"
-                class="h-[38px] flex items-center justify-center px-3 bg-accent-green text-white uppercase rounded font-medium"
+                :class="{
+                  'h-[38px] flex items-center justify-center px-3 text-white uppercase rounded font-medium': true,
+                  'bg-accent-green': `${project.status}`.toUpperCase() === 'DEPLOYED',
+                  'bg-accent-red': `${project.status}`.toUpperCase() === 'DRAFT',
+                  'bg-accent-yellow': `${project.status}`.toUpperCase() === 'DEPLOYING',
+                }"
               >
-                Deployed
-              </div>
-              <div
-                v-else
-                class="h-[38px] flex items-center justify-center px-3 bg-accent-red text-white uppercase rounded font-medium"
-              >
-                Draft
+                {{ project.status }}
               </div>
             </div>
 

@@ -45,10 +45,6 @@ export default {
   // },
 
   async fetchAll({ commit }) {
-    // Init client
-    // const clientSubIndexers = this.$subApi.$get('indexers', {}, { progress: false }).catch((error) => {
-    //   return error;
-    // });
     const clientSolIndexers = this.$solApi.$get('indexers', {}, { progress: false }).catch((error) => {
       return error;
     });
@@ -56,16 +52,6 @@ export default {
     const indexers = await Promise.all([clientSolIndexers]).then(([resSolIndexers]) => {
       const _indexers = [];
 
-      // // Substrate indexer
-      // if (Array.isArray(resSubIndexer)) {
-      //   const _subIndexer = resSubIndexer.map((indexer) => ({
-      //     ...indexer,
-      //     deployed: true,
-      //     indexer: 'substrate',
-      //   }));
-
-      //   _indexers.push(..._subIndexer);
-      // }
       // Solana indexer
       if (Array.isArray(resSolIndexers)) {
         const _solIndexer = resSolIndexers.map((indexer) => ({

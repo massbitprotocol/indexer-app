@@ -1,11 +1,16 @@
 <template>
-  <div class="mt-15">
+  <div class="mt-15 pb-80">
     <div v-if="$auth.user" class="w-full flex items-center justify-between p-5 rounded-lg bg-neutral-lightest">
       <div class="flex items-center">
-        <img :src="$auth.user.avatar_url" class="w-auto h-[80px] rounded-full mr-3" alt="" loading="lazy" />
+        <img
+          :src="$auth.user.avatar_url || 'https://i.pravatar.cc/40?u=0f5511fd-9dfb-4aa7-a204-be8cec8e24f9'"
+          class="w-auto h-[80px] rounded-full mr-3"
+          alt=""
+          loading="lazy"
+        />
 
         <div class="flex flex-col">
-          <div class="text-title-2 text-neutral-darkest font-bold">{{ $auth.user.name }}</div>
+          <div class="text-title-2 text-neutral-darkest font-bold">{{ $auth.user.name || 'Hellen' }}</div>
 
           <div class="text-body-2 text-neutral/darker">0xf0c1 — 0b0b1c</div>
         </div>
@@ -56,42 +61,31 @@
               <ProjectFilter :projects.sync="indexers" :filters.sync="filters" />
 
               <ProjectList class="mt-10">
-                <ProjectCard
-                  v-for="project in indexers"
-                  :key="project.id"
-                  :project="project"
-                  router-name="my-indexer-indexer-id"
-                >
-                  <template #action>
-                    <div class="flex items-center justify-between">
-                      <div
-                        class="
-                          w-[84px]
-                          flex
-                          items-center
-                          justify-center
-                          px-2
-                          py-1
-                          uppercase
-                          text-caption
-                          font-semibold
-                          text-white
-                          bg-accent-green
-                          rounded
-                        "
-                      >
-                        Deployed
-                      </div>
+                <template v-for="project in indexers">
+                  <ProjectCard :key="project.id" :project="project" router-name="my-indexer-indexer-id">
+                    <template #action>
+                      <div class="flex items-center justify-between">
+                        <div
+                          :class="{
+                            'w-[84px] flex items-center justify-center px-2 py-1 uppercase text-caption font-semibold text-white rounded': true,
+                            'bg-accent-green': `${project.status}`.toUpperCase() === 'DEPLOYED',
+                            'bg-accent-red': `${project.status}`.toUpperCase() === 'DRAFT',
+                            'bg-accent-yellow': `${project.status}`.toUpperCase() === 'DEPLOYING',
+                          }"
+                        >
+                          {{ project.status }}
+                        </div>
 
-                      <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
-                    </div>
-                  </template>
-                </ProjectCard>
+                        <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
+                      </div>
+                    </template>
+                  </ProjectCard>
+                </template>
               </ProjectList>
 
-              <div class="mt-15 mx-auto max-w-xs">
+              <!-- <div class="mt-15 mx-auto max-w-xs">
                 <TheLoadMoreButton />
-              </div>
+              </div> -->
             </div>
 
             <div v-else class="h-full flex items-center justify-center py-20">
@@ -124,41 +118,31 @@
               <ProjectFilter :projects.sync="indexers" :filters.sync="filters" />
 
               <ProjectList class="mt-10">
-                <ProjectCard
-                  v-for="project in indexers"
-                  :key="project.id"
-                  :project="project"
-                  router-ame="my-indexer-id"
-                >
-                  <template #action>
-                    <div class="flex items-center justify-between">
-                      <div
-                        class="
-                          flex
-                          items-center
-                          justify-center
-                          px-2
-                          py-1
-                          uppercase
-                          text-caption
-                          font-semibold
-                          text-white
-                          bg-accent-red
-                          rounded
-                        "
-                      >
-                        Draft
-                      </div>
+                <template v-for="project in indexers">
+                  <ProjectCard :key="project.id" :project="project" router-name="my-indexer-indexer-id">
+                    <template #action>
+                      <div class="flex items-center justify-between">
+                        <div
+                          :class="{
+                            'w-[84px] flex items-center justify-center px-2 py-1 uppercase text-caption font-semibold text-white rounded': true,
+                            'bg-accent-green': `${project.status}`.toUpperCase() === 'DEPLOYED',
+                            'bg-accent-red': `${project.status}`.toUpperCase() === 'DRAFT',
+                            'bg-accent-yellow': `${project.status}`.toUpperCase() === 'DEPLOYING',
+                          }"
+                        >
+                          {{ project.status }}
+                        </div>
 
-                      <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
-                    </div>
-                  </template>
-                </ProjectCard>
+                        <div class="text-caption text-neutral-grey font-semibold">4 day ago</div>
+                      </div>
+                    </template>
+                  </ProjectCard>
+                </template>
               </ProjectList>
 
-              <div class="mt-15 mx-auto max-w-xs">
+              <!-- <div class="mt-15 mx-auto max-w-xs">
                 <TheLoadMoreButton />
-              </div>
+              </div> -->
             </div>
 
             <div v-else class="h-full flex items-center justify-center py-20">

@@ -18,7 +18,7 @@
       <div class="flex-none">
         <img
           loading="lazy"
-          :src="project.icon || `https://i.pravatar.cc/40?u=${project.id}`"
+          :src="project.icon || `https://i.pravatar.cc/40?u=0f5511fd-9dfb-4aa7-a204-be8cec8e24f9`"
           width="40"
           height="40"
           alt="Profile Picture"
